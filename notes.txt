@@ -98,3 +98,6 @@ pip3 install google-cloud-bigquery -U
 
 
 source ~/.msds498GroupProject/bin/activate
+
+Create new remote repo from existing local repo:
+git remote add origin git@github.com:byegates/ark.git
