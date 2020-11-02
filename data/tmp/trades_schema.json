@@ -1,0 +1,82 @@
+[
+      {
+        "mode": "NULLABLE",
+        "name": "Seq_No",
+        "type": "STRING"
+      },
+      {
+        "mode": "REQUIRED",
+        "name": "Fund",
+        "type": "STRING"
+      },
+      {
+        "mode": "REQUIRED",
+        "name": "Date",
+        "type": "DATE"
+      },
+      {
+        "mode": "REQUIRED",
+        "name": "Action",
+        "type": "STRING"
+      },
+      {
+        "mode": "REQUIRED",
+        "name": "Ticker",
+        "type": "STRING"
+      },
+      {
+        "mode": "REQUIRED",
+        "name": "CUSIP",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "Company",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "Shares",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "Weight",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "Value",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "TradePrice",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "Open",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "Close",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "High",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "Low",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "Price",
+        "type": "FLOAT"
+      }
+    ]
