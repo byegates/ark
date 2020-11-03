@@ -71,16 +71,41 @@ bq mk -t ark.holdings Date:DATE,Fund:STRING,Company:STRING,Ticker:STRING,CUSIP:S
 bq rm -f -t nw-msds498-ark-etf-analytics:ark.trades
 bq mk --external_table_definition=~/ark/data/tmp/trades_config.json ark.trades 
 
+## Creating a table definition file for an external data source
+https://cloud.google.com/bigquery/external-table-definition#creating_a_table_definition_using_a_json_schema_file
+
+## Querying Cloud Storage data
+https://cloud.google.com/bigquery/external-data-cloud-storage#bq
+
+## Querying Google Drive data
+https://cloud.google.com/bigquery/external-data-drive#permanent-tables
+
+## Running parameterized queries
+https://cloud.google.com/bigquery/docs/parameterized-queries#bq
+
+## datasets under default project
+bq ls --format=pretty
+bq ls --format=pretty ark
+
+
+### Getting dataset information
+bq show \
+--format=prettyjson \
+nw-msds498-ark-etf-analytics:ark
+
+### getting table schema
 bq show \
 --schema \
 --format=prettyjson \
 nw-msds498-ark-etf-analytics:ark.trades > ~/ark/data/tmp/trades_schema.json
 
+### getting table information
 bq show \
 --table \
 --format=prettyjson \
 nw-msds498-ark-etf-analytics:ark.trades > ~/ark/data/tmp/trades_config.json
 
+### get holdings table distinct and dup row count
 bq query --nouse_legacy_sql --max_rows=100 \
 'SELECT
   (
@@ -97,22 +122,32 @@ bq query --nouse_legacy_sql --max_rows=100 \
   FROM
     `nw-msds498-ark-etf-analytics`.ark.holdings) AS total_rows;'
 
+### holdings table dedup
+bq query --nouse_legacy_sql --max_rows=100 \
+'CREATE OR REPLACE TABLE
+  `nw-msds498-ark-etf-analytics`.ark.holdings AS
+SELECT
+  DISTINCT *
+FROM
+  `nw-msds498-ark-etf-analytics`.ark.holdings
+ORDER BY
+  Date DESC,
+  Fund;'
 
-## Deloy cloud functions
-gcloud functions deploy csv_loader \
---runtime=python38 \
---trigger-resource=gs://nw-msds498-ark-etf-analytics \
---trigger-event=google.storage.object.finalize \
---entry-point=csv_loader \
---env-vars-file=env.yaml
+### The metadata returned is for all datasets in the default project
+bq query --nouse_legacy_sql \
+'SELECT
+   * EXCEPT(schema_owner)
+ FROM
+   INFORMATION_SCHEMA.SCHEMATA'
 
-gcloud functions describe ark-holdings-daily-pull
-gcloud functions deploy ark-holdings-daily-pull \
---runtime=python38 \
---trigger-http \
---allow-unauthenticated \
---entry-point=ark_pull \
---env-vars-file=env.yaml
+
+### tables of a dataset
+bq query --nouse_legacy_sql \
+'SELECT
+   * EXCEPT(is_typed)
+ FROM
+   ark.INFORMATION_SCHEMA.TABLES'
 
 ## trigger cloud functions through command line
 curl -X POST https://us-central1-nw-msds498-ark-etf-analytics.cloudfunctions.net/ark-holdings-daily-pull -H "Content-Type:application/json"  -d '{}'
@@ -159,3 +194,5 @@ https://opensource.com/article/19/5/python-3-default-mac
 
 ## pyenv virtual env management
 https://realpython.com/intro-to-pyenv/
+-- for Mac
+brew install pyenv-virtualenv

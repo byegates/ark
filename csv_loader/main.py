@@ -1,6 +1,5 @@
 import os
 from google.cloud import bigquery
-from dedup import dedup
 import time
 
 def csv_loader(data, context):
@@ -39,10 +38,6 @@ def csv_loader(data, context):
 
         destination_table = client.get_table(dataset_ref.table(os.environ['TABLE']))
         print(f"Table: {os.environ['TABLE']} now have {destination_table.num_rows} rows.")
-
-        time.sleep(1)
-        tbl = f"{dataset_id}.{os.environ['TABLE']}"
-        dedup(tbl)
 
 
 if __name__ == '__main__':
