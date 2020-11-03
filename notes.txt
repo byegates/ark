@@ -15,7 +15,8 @@ tar -xf Python-3.8.6.tar.xz
 cd Python-3.8.6/
 ./configure --enable-optimizations --enable-loadable-sqlite-extensions
 make -j 4
-make install
+sudo make install
+python3 -m pip install -U pip
 # sudo make altinstall
 
 sudo apt-get install python3-venv
@@ -49,9 +50,9 @@ gcloud functions deploy auth_callback --runtime=nodejs8 --trigger-http --env-var
 
 l
 gcloud functions logs read
-gsutil ls -l gs://nw-msds498-ark-etf-analytics/2020-10-27*
-gsutil ls -l gs://nw-msds498-ark-holdings-raw/2020-10-27*
-gsutil -m rm gs://nw-msds498-ark-holdings-raw/2020-10-27*
+gsutil ls -l gs://nw-msds498-ark-etf-analytics/2020-11-02* | sort -k 2
+gsutil ls -l gs://nw-msds498-ark-holdings-raw/2020-11-02* | sort -k 2
+gsutil -m rm gs://nw-msds498-ark-holdings-raw/2020-11-02*
 
 gsutil cp dummy gs://nw-msds498-ark-etf-analytics/edited/dummy
 gsutil mb gs://nw-msds498-ark-etf-analytics-raw
@@ -90,6 +91,20 @@ gcloud functions deploy csv_loader \
 --entry-point=csv_loader \
 --env-vars-file=env.yaml
 
+gcloud functions describe ark-holdings-daily-pull
+gcloud functions deploy ark-holdings-daily-pull \
+--runtime=python38 \
+--trigger-http \
+--allow-unauthenticated \
+--entry-point=ark_pull \
+--env-vars-file=env.yaml
+
+# http-pull trigger url
+# https://us-central1-nw-msds498-ark-etf-analytics.cloudfunctions.net/ark-holdings-daily-pull
+
+curl -X POST https://us-central1-nw-msds498-ark-etf-analytics.cloudfunctions.net/ark-holdings-daily-pull -H "Content-Type:application/json"  -d '{}'
+
+
 Enable venv:
 sudo apt-get install python3-venv
 python3 -m venv ~/.csv_loader
@@ -105,4 +120,17 @@ git pull origin master --allow-unrelated-histories
 git merge master
 
 gcloud iam service-accounts keys create ~/key.json  --iam-account ark-pull@nw-msds498-ark-etf-analytics.iam.gserviceaccount.com
+echo "" >> .gitignore
+echo "# ignore key file which was used for dev/ut/debug" >> .gitignore
 echo "pull/key.json" >> .gitignore
+
+
+## Compute
+gcloud compute instances list
+
+gcloud compute instances update frontend-default-40682 --no-deletion-protection --zone asia-east2-c
+gcloud compute instances update jenkins-default-5066 --no-deletion-protection --zone asia-east2-c
+
+gcloud compute instances delete jenkins-default-5066 --zone asia-east2-c
+gcloud compute instances delete frontend-default-40682 --zone asia-east2-c
+

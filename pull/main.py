@@ -85,7 +85,7 @@ def ark_pull(dummy):
         dest_blob_nm, raw_dest_blob_nm = dest_blob_names(etf, asof_date_str)
         upload_blob(raw_bucket, raw_str_data, raw_dest_blob_nm)
         upload_blob(bucket, edited_str_data, dest_blob_nm)
-    return 'Success'
+    return 'Success\n\n'
 
 
 if __name__ == '__main__':
