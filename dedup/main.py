@@ -50,7 +50,8 @@ def dedup_func(client, tbl):
     return
 
 
-def dedup(tbl, dummy):
+def dedup(dummy):
+    tbl = 'ark.holdings'
     print(f"Deduping table: {tbl}")
     client = bigquery.Client()
 
@@ -62,4 +63,4 @@ def dedup(tbl, dummy):
 
 
 if __name__ == '__main__':
-    dedup('ark.holdings', '')
+    dedup('')
