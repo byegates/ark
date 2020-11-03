@@ -43,14 +43,14 @@ def dedup_func(client, tbl):
     """
 
     print("DeDup Function Started...")
-    query_job = client.query(query)
+    client.query(query)
     print("DeDup Function Completed...")
-    time.sleep(1)
+    time.sleep(2)
 
     return
 
 
-def dedup(tbl):
+def dedup(tbl, dummy):
     print(f"Deduping table: {tbl}")
     client = bigquery.Client()
 
@@ -58,5 +58,8 @@ def dedup(tbl):
         dedup_func(client, tbl)
         dup_exist(client, tbl)
 
+    return 'Success\n\n'
+
+
 if __name__ == '__main__':
-    dedup('ark.holdings')
+    dedup('ark.holdings', '')
