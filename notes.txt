@@ -8,11 +8,11 @@ cat /etc/os-release
 sudo apt-get update
 sudo apt-get upgrade
 
-# Building python 3.8
+# Building python 3.8.6
 sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev curl libbz2-dev
-curl -O https://www.python.org/ftp/python/3.8.5/Python-3.8.5.tgz
-tar -xf Python-3.8.5.tgz
-cd Python-3.8.5/
+curl -O https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tar.xz
+tar -xf Python-3.8.6.tar.xz
+cd Python-3.8.6/
 ./configure --enable-optimizations --enable-loadable-sqlite-extensions
 make -j 4
 make install
@@ -101,3 +101,8 @@ source ~/.msds498GroupProject/bin/activate
 
 Create new remote repo from existing local repo:
 git remote add origin git@github.com:byegates/ark.git
+git pull origin master --allow-unrelated-histories
+git merge master
+
+gcloud iam service-accounts keys create ~/key.json  --iam-account ark-pull@nw-msds498-ark-etf-analytics.iam.gserviceaccount.com
+echo "pull/key.json" >> .gitignore

@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# ignore key file which was used for dev/ut/debug
+pull/key.json
