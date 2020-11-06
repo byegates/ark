@@ -62,5 +62,9 @@ def dedup(dummy):
     return 'Success\n\n'
 
 
+def dedup_get():
+    return dedup('')
+
+
 if __name__ == '__main__':
     dedup('')
