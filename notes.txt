@@ -28,29 +28,7 @@ curl -O https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_INNOVATION_E
 
 curl https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv > ARKK_20201009.csv
 
-gcloud config set project nw-msds498-ark-etf-analytics
-gcloud config set project msds-498-group-project
-
 pip3 install google-cloud-datastore -U
-
-OAuth client created
-39160422190-r3l5qtd444lg4k99eo0bm4biq730h8v9.apps.googleusercontent.com
-znXUUfTJ1pvbd3sNATZ_jWYO
-
-cd ~
-cd gcf-gmail-codelab/auth
-
-## Deploy Cloud Function auth_init
-gcloud functions deploy auth_init --runtime=nodejs8 --trigger-http --env-vars-file=env_vars.yaml
-
-## Deploy Cloud Function auth_callback
-gcloud functions deploy auth_callback --runtime=nodejs8 --trigger-http --env-vars-file=env_vars.yaml
-
-
-`gcloud functions logs read`
-`gsutil ls -l 'gs://nw-msds498-ark-etf-analytics/2020-11-02*' | sort -k 2`
-`gsutil ls -l 'gs://nw-msds498-ark-holdings-raw/2020-11-02*' | sort -k 2`
-`gsutil -m rm 'gs://nw-msds498-ark-holdings-raw/2020-11-02*'`
 
 `gsutil cp dummy gs://nw-msds498-ark-etf-analytics/edited/dummy`
 `gsutil mb gs://nw-msds498-ark-etf-analytics-raw`
@@ -64,90 +42,6 @@ gsutil mb gs://nw-msds498-ark-holdings-raw
 gsutil mb gs://nw-msds498-ark-trades
 
 
-## BigQuery
-bq rm -f -t nw-msds498-ark-etf-analytics:ark.holdings
-bq mk -t ark.holdings Date:DATE,Fund:STRING,Company:STRING,Ticker:STRING,CUSIP:STRING,Shares:FLOAT,Market_Value:FLOAT,Weight:FLOAT
-
-bq rm -f -t nw-msds498-ark-etf-analytics:ark.trades
-bq mk --external_table_definition=~/ark/data/tmp/trades_config.json ark.trades 
-
-## Creating a table definition file for an external data source
-https://cloud.google.com/bigquery/external-table-definition#creating_a_table_definition_using_a_json_schema_file
-
-## Querying Cloud Storage data
-https://cloud.google.com/bigquery/external-data-cloud-storage#bq
-
-## Querying Google Drive data
-https://cloud.google.com/bigquery/external-data-drive#permanent-tables
-
-## Running parameterized queries
-https://cloud.google.com/bigquery/docs/parameterized-queries#bq
-
-## datasets under default project
-bq ls --format=pretty
-bq ls --format=pretty ark
-
-
-### Getting dataset information
-bq show \
---format=prettyjson \
-nw-msds498-ark-etf-analytics:ark
-
-### getting table schema
-bq show \
---schema \
---format=prettyjson \
-nw-msds498-ark-etf-analytics:ark.trades > ~/ark/data/tmp/trades_schema.json
-
-### getting table information
-bq show \
---table \
---format=prettyjson \
-nw-msds498-ark-etf-analytics:ark.trades > ~/ark/data/tmp/trades_config.json
-
-### get holdings table distinct and dup row count
-bq query --nouse_legacy_sql --max_rows=100 \
-'SELECT
-  (
-  SELECT
-    COUNT(1)
-  FROM (
-    SELECT
-      DISTINCT *
-    FROM
-      `nw-msds498-ark-etf-analytics`.ark.holdings)) AS distinct_rows,
-  (
-  SELECT
-    COUNT(1)
-  FROM
-    `nw-msds498-ark-etf-analytics`.ark.holdings) AS total_rows;'
-
-### holdings table dedup
-bq query --nouse_legacy_sql --max_rows=100 \
-'CREATE OR REPLACE TABLE
-  `nw-msds498-ark-etf-analytics`.ark.holdings AS
-SELECT
-  DISTINCT *
-FROM
-  `nw-msds498-ark-etf-analytics`.ark.holdings
-ORDER BY
-  Date DESC,
-  Fund;'
-
-### The metadata returned is for all datasets in the default project
-bq query --nouse_legacy_sql \
-'SELECT
-   * EXCEPT(schema_owner)
- FROM
-   INFORMATION_SCHEMA.SCHEMATA'
-
-
-### tables of a dataset
-bq query --nouse_legacy_sql \
-'SELECT
-   * EXCEPT(is_typed)
- FROM
-   ark.INFORMATION_SCHEMA.TABLES'
 
 ## trigger cloud functions through command line
 curl -X POST https://us-central1-nw-msds498-ark-etf-analytics.cloudfunctions.net/ark-holdings-daily-pull -H "Content-Type:application/json"  -d '{}'
