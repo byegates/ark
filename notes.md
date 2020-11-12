@@ -28,9 +28,6 @@ curl -O https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_INNOVATION_E
 
 curl https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv > ARKK_20201009.csv
 
-gcloud config set project nw-msds498-ark-etf-analytics
-gcloud config set project msds-498-group-project
-
 pip3 install google-cloud-datastore -U
 
 OAuth client created
@@ -102,7 +99,7 @@ gcloud functions deploy ark-holdings-daily-pull \
 curl -X POST https://us-central1-nw-msds498-ark-etf-analytics.cloudfunctions.net/ark-holdings-daily-pull -H "Content-Type:application/json"  -d '{}'
 
 
-Enable venv:
+## Enable venv:
 sudo apt-get install python3-venv
 python3 -m venv ~/.csv_loader
 source ~/.csv_loader/bin/activate
@@ -141,3 +138,6 @@ https://opensource.com/article/19/5/python-3-default-mac
 
 ## pyenv virtual env management
 https://realpython.com/intro-to-pyenv/
+
+-- for Mac
+brew install pyenv-virtualenv
