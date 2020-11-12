@@ -77,26 +77,8 @@ bq show \
 nw-msds498-ark-etf-analytics:ark.trades > ~/ark/data/tmp/trades_schema.json
 
 bq show \
---table \
 --format=prettyjson \
 nw-msds498-ark-etf-analytics:ark.trades > ~/ark/data/tmp/trades_config.json
-
-bq query --nouse_legacy_sql --max_rows=100 \
-'SELECT
-  (
-  SELECT
-    COUNT(1)
-  FROM (
-    SELECT
-      DISTINCT *
-    FROM
-      `nw-msds498-ark-etf-analytics`.ark.holdings)) AS distinct_rows,
-  (
-  SELECT
-    COUNT(1)
-  FROM
-    `nw-msds498-ark-etf-analytics`.ark.holdings) AS total_rows;'
-
 
 -- Deloy cloud functions
 gcloud functions deploy csv_loader \
@@ -143,7 +125,6 @@ echo "pull/key.json" >> .gitignore
 ## Compute
 gcloud projects list
 gcloud functions list
-gcloud buckets list
 gcloud components list
 
 gcloud compute instances list
