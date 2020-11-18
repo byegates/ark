@@ -31,7 +31,6 @@ ts = now.strftime("%Y%m%d_%H%M%S_%f")
 project_id = 'nw-msds498-ark-etf-analytics'
 bucket_name = 'nw-msds498-ark-etf-analytics'
 raw_bucket_name = 'nw-msds498-ark-holdings-raw'
-# storage_client = storage.Client.from_service_account_json('key.json')
 storage_client = storage.Client()
 bucket = storage_client.get_bucket(bucket_name)
 raw_bucket = storage_client.get_bucket(raw_bucket_name)
@@ -73,10 +72,13 @@ def retrieve_data(etf, url):
     return raw_str_data, edited_str_data, str(asof_date)
 
 
-def upload_blob(bucket, source_data, blob_name):   
-    print(f"Uploading To:\n    gs://{bucket.name}/{blob_name}")
+def upload_blob(bucket, source_data, blob_name): 
     blob = bucket.blob(blob_name)
-    blob.upload_from_string(source_data, content_type='text/plain') #'image/jpg'
+    if not blob.exists():
+        print(f"Uploading To:\n    gs://{bucket.name}/{blob_name}")
+        blob.upload_from_string(source_data, content_type='text/plain') #'image/jpg'
+    else:
+        print(f"\n    {blob_name} exists in {bucket.name}, Upload step skipped.")
 
 
 def ark_pull(dummy):
