@@ -4,6 +4,7 @@ import urllib.request
 from urllib.request import Request, urlopen
 import pandas as pd
 from io import StringIO
+import pytz
 
 # Active ETFs
 arkk_url = 'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv'
@@ -26,7 +27,8 @@ ark_dict = {
     }
 
 now = datetime.now()
-ts = now.strftime("%Y%m%d_%H%M%S_%f")
+est_now = now.astimezone(pytz.timezone("America/New_York"))
+ts = est_now.strftime("%Y%m%d_%H%M%S_%f")
 
 project_id = 'nw-msds498-ark-etf-analytics'
 bucket_name = 'nw-msds498-ark-etf-analytics'
