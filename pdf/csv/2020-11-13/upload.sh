@@ -1,0 +1,1 @@
+gsutil -m cp ./*.csv gs://nw-msds498-ark-etf-analytics/

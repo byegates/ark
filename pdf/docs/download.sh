@@ -1,0 +1,1 @@
+gsutil cp gs://nw-msds498-ark-etf-analytics/pdf/* .
