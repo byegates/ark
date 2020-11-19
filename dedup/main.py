@@ -38,7 +38,7 @@ def dedup_func(client, tbl):
     FROM
         {tbl}
     ORDER BY
-        Date DESC,
+        Date,
         Fund
     """
 
