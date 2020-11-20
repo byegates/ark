@@ -5,6 +5,8 @@ from urllib.request import Request, urlopen
 import pandas as pd
 from io import StringIO
 import pytz
+import time
+import os
 
 # Active ETFs
 arkk_url = 'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv'
@@ -39,6 +41,26 @@ raw_bucket = storage_client.get_bucket(raw_bucket_name)
 
 hdr = {'User-Agent': 'Mozilla/5.0'}
 
+environ = {
+    'COOL_DOWN': '2',
+    'FORCE_PULL_RAW': 'NO',
+    'VERSION': 'NA'
+}
+
+def get_env(key):
+    try:
+        val = os.environ[key]
+        print(f"\nENV var: '{key:<15}' value: {val}")
+    except KeyError as ke:
+        print(f"\nENV var: '{key:<15}' value: {environ[key]:<5} (default)")
+        val = environ[key]
+    return val
+
+
+force_pull_raw = True if get_env('FORCE_PULL_RAW') == 'YES' else False
+cool_down = int(get_env('COOL_DOWN'))
+version = get_env('VERSION')
+
 
 def get_date_from_df(df):
     return datetime.date(df.iloc[0, 0])
@@ -65,7 +87,7 @@ def df_to_str(df):
 
 
 def retrieve_data(etf, url):
-    print(f"\nRetrieving {etf} From:\n    {url}")
+    print(f"\n{etf}    (is being retreived from):\n     {url}")
     req = Request(url, headers=hdr)
     raw_str_data = str(urlopen(req).read(), 'utf-8')
     df = str_to_df(raw_str_data)
@@ -77,18 +99,26 @@ def retrieve_data(etf, url):
 def upload_blob(bucket, source_data, blob_name): 
     blob = bucket.blob(blob_name)
     if not blob.exists():
-        print(f"Uploading To:\n    gs://{bucket.name}/{blob_name}")
+        time.sleep(cool_down) # avoid too frequent update to BigQuery
+        print(f"{blob_name}    is being uploaded to (after slept {cool_down} secs):\n    gs://{bucket.name}/{blob_name}")
         blob.upload_from_string(source_data, content_type='text/plain') #'image/jpg'
     else:
-        print(f"\n    {blob_name} exists in {bucket.name}, Upload step skipped.")
+        print(f"\n{blob_name}    exists, Upload skipped.")
 
 
 def ark_pull(dummy):
+    print(f"\n----- Running function version: {version} -----")
     for etf, url in ark_dict.items():
         raw_str_data, edited_str_data, asof_date_str = retrieve_data(etf, url)
         dest_blob_nm, raw_dest_blob_nm = dest_blob_names(etf, asof_date_str)
+
+        if bucket.blob(dest_blob_nm).exists() and not force_pull_raw:
+            print(f"\n----- Exit as data has already been pulled for {asof_date_str} -----\n")
+            break
+        
         upload_blob(raw_bucket, raw_str_data, raw_dest_blob_nm)
         upload_blob(bucket, edited_str_data, dest_blob_nm)
+
     return 'Success\n\n'
 
 
