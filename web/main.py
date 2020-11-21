@@ -11,23 +11,30 @@ app = dash_app.server
 cur_dt, pri_dt = core.get_two_latest_dates()
 df = core.holdings_by_date(cur_dt)
 val_float = df.value.str.strip('$ ').str.replace(',', '').astype(float)
-df['weight'] = val_float/sum(val_float)
+df['weight'] = (val_float/sum(val_float)).round(8)
 df.insert(0, 'Seq', df.index+1) # Add number sequence of holdings
 
 
 dash_app.layout = html.Div(children=[
-    html.H1(children='Ark Investment Holdings'),
+    html.H1(children='Ark Invest Holdings'),
 
     html.H2(children=f'''
-        Latest Holdings as of {cur_dt}
+        As of {cur_dt} market close
     '''),
 
     dtbl.DataTable(
         id='All Ark Latest Holdings',
         columns=[{"name": i, "id": i} for i in df.columns],
         data=df.to_dict('records'),
+        style_cell={'textAlign': 'left'},
         page_size=20,  # we have less data in this example, so setting to 20
         #style_table={'height': '600px', 'overflowY': 'auto'}
+    style_cell_conditional=[
+        {
+            'if': {'column_id': c},
+            'textAlign': 'right'
+        } for c in ['shares', 'value', 'weight']
+    ],
     )
 ])
 
