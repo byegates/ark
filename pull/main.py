@@ -87,7 +87,7 @@ def df_to_str(df):
 
 
 def retrieve_data(etf, url):
-    print(f"\n{etf}    (is being retreived from):\n     {url}")
+    print(f"\n{etf}:    {url} (retreiving)")
     req = Request(url, headers=hdr)
     raw_str_data = str(urlopen(req).read(), 'utf-8')
     df = str_to_df(raw_str_data)
@@ -107,13 +107,12 @@ def upload_blob(bucket, source_data, blob_name):
 
 
 def ark_pull(dummy):
-    print(f"\n----- Running function version: {version} -----")
     for etf, url in ark_dict.items():
         raw_str_data, edited_str_data, asof_date_str = retrieve_data(etf, url)
         dest_blob_nm, raw_dest_blob_nm = dest_blob_names(etf, asof_date_str)
 
         if bucket.blob(dest_blob_nm).exists() and not force_pull_raw:
-            print(f"\n----- Exit as data has already been pulled for {asof_date_str} -----\n")
+            print(f"\n----- {asof_date_str} data was already pulled, BYE -----\n")
             break
         
         upload_blob(raw_bucket, raw_str_data, raw_dest_blob_nm)
