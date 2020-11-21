@@ -7,6 +7,7 @@ import core
 dash_app = dash.Dash()
 app = dash_app.server
 
+# Latest all holdings
 cur_dt, pri_dt = core.get_two_latest_dates()
 df = core.holdings_by_date(cur_dt)
 val_float = df.value.str.strip('$ ').str.replace(',', '').astype(float)
@@ -24,6 +25,8 @@ dash_app.layout = html.Div(children=[
         id='All Ark Latest Holdings',
         columns=[{"name": i, "id": i} for i in df.columns],
         data=df.to_dict('records'),
+        page_size=20,  # we have less data in this example, so setting to 20
+        style_table={'height': '300px', 'overflowY': 'auto'}
     )
 ])
 
