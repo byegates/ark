@@ -12,13 +12,14 @@ cur_dt, pri_dt = core.get_two_latest_dates()
 df = core.holdings_by_date(cur_dt)
 val_float = df.value.str.strip('$ ').str.replace(',', '').astype(float)
 df['weight'] = val_float/sum(val_float)
+df.insert(0, 'Seq', df.index+1) # Add number sequence of holdings
 
 
 dash_app.layout = html.Div(children=[
-    html.H1(children='Ark Holdings Analytics'),
+    html.H1(children='Ark Investment Holdings'),
 
     html.H2(children=f'''
-        Ark Investments Latest Holdings as of {cur_dt}
+        Latest Holdings as of {cur_dt}
     '''),
 
     dtbl.DataTable(
