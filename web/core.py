@@ -112,6 +112,7 @@ def holdings_by_date(dt):
     sql = f"""
 SELECT
   Ticker,
+  Company,
   FORMAT("%'d", CAST(SUM(Shares) AS INT64)) AS shares,
   CONCAT('$ ', FORMAT("%'.2f", SUM(Market_Value))) AS value
 FROM
@@ -119,7 +120,8 @@ FROM
 WHERE
   Date = '{dt}'
 GROUP BY
-  Ticker
+  Ticker,
+  Company
 ORDER BY
   SUM(Market_Value) DESC
     """

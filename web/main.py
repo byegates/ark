@@ -26,7 +26,7 @@ dash_app.layout = html.Div(children=[
         columns=[{"name": i, "id": i} for i in df.columns],
         data=df.to_dict('records'),
         page_size=20,  # we have less data in this example, so setting to 20
-        style_table={'height': '300px', 'overflowY': 'auto'}
+        #style_table={'height': '600px', 'overflowY': 'auto'}
     )
 ])
 
