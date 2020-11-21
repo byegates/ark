@@ -131,3 +131,5 @@ dmypy.json
 # ignore key file which was used for dev/ut/debug
 pull/key.json
 notes.txt
+web/.venv/
+web/.venvs/
