@@ -2,72 +2,40 @@ import google.auth
 from google.cloud import bigquery, bigquery_storage
 from datetime import datetime
 import pandas as pd
-#import cdata.googlebigquery as mod
 
 
-credentials, your_project_id = google.auth.default(
+credentials, project_id = google.auth.default(
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
 )
 
-# Make clients.
-bqclient = bigquery.Client(credentials=credentials, project=your_project_id,)
-bqstorageclient = bigquery_storage.BigQueryReadClient(credentials=credentials)
+client = bigquery.Client(credentials=credentials, project=project_id,)
+bqsclient = bigquery_storage.BigQueryReadClient(credentials=credentials)
 
-client = bigquery.Client()
+today = datetime.now().strftime("%Y-%m-%d")
 
-#cnxn = mod.connect("""DataSetId=ark;
-#    ProjectId=nw-msds498-ark-etf-analytics;
-#    InitiateOAuth=GETANDREFRESH;
-#    OAuthSettingsLocation=/PATH/TO/OAuthSettings.txt""")
+def bq_to_df(sql):
+    return client.query(sql).result().to_dataframe(bqstorage_client=bqsclient)
 
 
-def get_all_dates():
+def trade_dates(dt=today, num=5):
     sql = f"""
 SELECT
   DISTINCT Date
 FROM
   ark.holdings
-ORDER BY
-  Date DESC
-    """
-
-    query_job = client.query(sql)
-    results = query_job.result()
-
-    dates = [ row.Date.strftime("%Y-%m-%d") for row in results]
-
-    return dates
-
-
-def get_two_latest_dates(dt=None):
-    if dt is None:
-        where = ''
-    else:
-        where = f"""
 WHERE
   Date <= '{dt}'
-        """
-
-    sql = f"""
-SELECT
-  DISTINCT Date
-FROM
-  ark.holdings
-{where}
 ORDER BY
   Date DESC
 LIMIT
-  2
+  {num}
     """
 
-    query_job = client.query(sql)
-    results = query_job.result()
+    df = bq_to_df(sql)
 
-    dates = [ row.Date.strftime("%Y-%m-%d") for row in results]
-    cur_dt = dates[0]
-    pri_dt = dates[1]
+    dates = [ v.strftime("%Y-%m-%d") for v in df.Date.to_list()]
 
-    return cur_dt, pri_dt
+    return dates
 
 
 def holdings_by_date_fund_formatted(dt, fund='ARKK'):
@@ -88,8 +56,7 @@ GROUP BY
 ORDER BY
   SUM(Market_Value) DESC    """
 
-    df = bqclient.query(sql).result().to_dataframe(bqstorage_client=bqstorageclient)
-    return df
+    return client.query(sql).result().to_dataframe(bqstorage_client=bqsclient)
 
 
 def holdings_by_date_fund(dt, fund='ARKK'):
@@ -104,8 +71,7 @@ WHERE
 ORDER BY
   Market_Value DESC    """
 
-    df = bqclient.query(sql).result().to_dataframe(bqstorage_client=bqstorageclient)
-    return df
+    return client.query(sql).result().to_dataframe(bqstorage_client=bqsclient)
 
 
 def holdings_by_date(dt):
@@ -126,7 +92,14 @@ ORDER BY
   SUM(Market_Value) DESC
     """
 
-    df = bqclient.query(sql).result().to_dataframe(bqstorage_client=bqstorageclient)
+    return client.query(sql).result().to_dataframe(bqstorage_client=bqsclient)
+
+
+def holdings_overall(cur_dt):
+    df = holdings_by_date(cur_dt)
+    val_float = df.value.str.strip('$ ').str.replace(',', '').astype(float)
+    df['weight'] = (val_float/sum(val_float)).round(8)
+    df.insert(0, 'Seq', df.index+1) # Add number sequence of holdings
     return df
 
 

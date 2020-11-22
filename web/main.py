@@ -2,25 +2,21 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_table as dtbl
-import core
 
 dash_app = dash.Dash(__name__)
 dash_app.title = 'Ark Invest'
 app = dash_app.server
 
-# Latest all holdings
-cur_dt, pri_dt = core.get_two_latest_dates()
-df = core.holdings_by_date(cur_dt)
-val_float = df.value.str.strip('$ ').str.replace(',', '').astype(float)
-df['weight'] = (val_float/sum(val_float)).round(8)
-df.insert(0, 'Seq', df.index+1) # Add number sequence of holdings
+from core import holdings_overall, trade_dates
 
+cur_dt = trade_dates()[0]
+df = holdings_overall(cur_dt)
 
 dash_app.layout = html.Div(children=[
-    html.H1(children='Ark Invest Holdings'),
+    html.H1(children='Ark Invest Holdings', style={"textAlign": "center"}),
 
-    html.H3(children=f'''
-        As of {cur_dt} market close
+    html.H4(children=f'''
+        As of {cur_dt} (market close)
     '''),
 
     dtbl.DataTable(
