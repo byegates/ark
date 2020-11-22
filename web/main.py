@@ -4,7 +4,8 @@ import dash_html_components as html
 import dash_table as dtbl
 import core
 
-dash_app = dash.Dash()
+dash_app = dash.Dash(__name__)
+dash_app.title = 'Ark Invest'
 app = dash_app.server
 
 # Latest all holdings
@@ -18,7 +19,7 @@ df.insert(0, 'Seq', df.index+1) # Add number sequence of holdings
 dash_app.layout = html.Div(children=[
     html.H1(children='Ark Invest Holdings'),
 
-    html.H2(children=f'''
+    html.H3(children=f'''
         As of {cur_dt} market close
     '''),
 
