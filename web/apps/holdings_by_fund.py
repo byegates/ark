@@ -7,25 +7,37 @@ import pathlib
 from app import app
 
 import dash_table as dtbl
-from core import holdings_overall, get_two_latest_dates
-
-cur_dt, _ = get_two_latest_dates()
-df = holdings_overall(cur_dt)
+import core as c
+from core import dates, funds, dt, fund, cols
 
 layout = html.Div(children=[
-    html.H1(children='Ark Invest Holdings', style={"textAlign": "center"}),
+    html.H1(children='Ark Invest Holdings by Fund', style={"textAlign": "center"}),
 
-    html.H3(children=f'''
-        As of {cur_dt} market close
-    '''),
+    html.Div([
+        html.Div([
+            html.Pre(children="Trading Day", style={"fontSize":"150%"}),
+            dcc.Dropdown(
+            id='dt', value=dt, clearable=False,
+            persistence=True, persistence_type='session',
+            options=[{'label': x, 'value': x} for x in dates]
+        )], className='two columns'),
 
+        html.Div([
+            html.Pre(children="Fund", style={"fontSize":"150%"}),
+            dcc.Dropdown(
+            id='fund', value='ARKK', clearable=False,
+            persistence=True, persistence_type='session',
+            options=[{'label': x, 'value': x} for x in funds]
+        )], className='two columns'),
+    ], className='row'),
+
+    html.Br(),
+    html.H6(id='tt_val'),
     dtbl.DataTable(
-        id='All Ark Latest Holdings',
-        columns=[{"name": i, "id": i} for i in df.columns],
-        data=df.to_dict('records'),
+        id='holdings',
+        columns=cols,
         style_cell={'textAlign': 'left'},
-        page_size=20,  # we have less data in this example, so setting to 20
-        #style_table={'height': '600px', 'overflowY': 'auto'}
+        page_size=20,
     style_cell_conditional=[
         {
             'if': {'column_id': c},
@@ -33,4 +45,18 @@ layout = html.Div(children=[
         } for c in ['shares', 'value', 'weight']
     ],
     )
-])
+
+    ])
+
+@app.callback(
+    Output(component_id='holdings', component_property='data'),
+    Output(component_id='tt_val', component_property='children'),
+    [Input(component_id='dt', component_property='value'),
+     Input(component_id='fund', component_property='value')]
+)
+def get_holdings(dt, fund):
+    df = c.holdings(dt, fund)
+    data=df.to_dict('records')
+    tt_val = f"$ {sum(df.value):,.2f}"
+
+    return data, tt_val

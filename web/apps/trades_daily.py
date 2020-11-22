@@ -7,30 +7,113 @@ import pathlib
 from app import app
 
 import dash_table as dtbl
-from core import holdings_overall, get_two_latest_dates
-
-cur_dt, _ = get_two_latest_dates()
-df = holdings_overall(cur_dt)
+import core as c
+from core import dates, funds, dt, fund, cols2, right_cols
 
 layout = html.Div(children=[
-    html.H1(children='Ark Invest Holdings', style={"textAlign": "center"}),
+    html.H1(children='Ark Invest Position Changes', style={"textAlign": "center"}),
 
-    html.H3(children=f'''
-        As of {cur_dt} market close
-    '''),
+    html.Div([
+        html.Div([
+            html.Pre(children="Trading Day", style={"fontSize":"150%"}),
+            dcc.Dropdown(
+            id='dt', value=dt, clearable=False,
+            persistence=True, persistence_type='session',
+            options=[{'label': x, 'value': x} for x in dates]
+        )], className='two columns'),
 
+        html.Div([
+            html.Pre(children="Fund", style={"fontSize":"150%"}),
+            dcc.Dropdown(
+            id='fund', value='ARKK', clearable=False,
+            persistence=True, persistence_type='session',
+            options=[{'label': x, 'value': x} for x in funds]
+        )], className='two columns'),
+    ], className='row'),
+
+    html.H6(children=f'''Increased positions'''),
     dtbl.DataTable(
-        id='All Ark Latest Holdings',
-        columns=[{"name": i, "id": i} for i in df.columns],
-        data=df.to_dict('records'),
+        id='buy',
+        columns=cols2,
         style_cell={'textAlign': 'left'},
-        page_size=20,  # we have less data in this example, so setting to 20
-        #style_table={'height': '600px', 'overflowY': 'auto'}
+        page_size=20,
     style_cell_conditional=[
         {
             'if': {'column_id': c},
             'textAlign': 'right'
-        } for c in ['shares', 'value', 'weight']
+        } for c in right_cols
     ],
-    )
-])
+    ),
+
+    html.H6(children=f'''Decreased positions'''),
+    dtbl.DataTable(
+        id='sell',
+        columns=cols2,
+        style_cell={'textAlign': 'left'},
+        page_size=20,
+    style_cell_conditional=[
+        {
+            'if': {'column_id': c},
+            'textAlign': 'right'
+        } for c in right_cols
+    ],
+    ),
+
+    html.H6(children=f'''New position'''),
+    dtbl.DataTable(
+        id='new_buy',
+        columns=cols2,
+        style_cell={'textAlign': 'left'},
+        page_size=20,
+    style_cell_conditional=[
+        {
+            'if': {'column_id': c},
+            'textAlign': 'right'
+        } for c in right_cols
+    ],
+    ),
+
+    html.H6(children=f'''Closed position'''),
+    dtbl.DataTable(
+        id='all_sold',
+        columns=cols2,
+        style_cell={'textAlign': 'left'},
+        page_size=20,
+    style_cell_conditional=[
+        {
+            'if': {'column_id': c},
+            'textAlign': 'right'
+        } for c in right_cols
+    ],
+    ),
+
+    html.H6(children=f'''Position with no change'''),
+    dtbl.DataTable(
+        id='no_change',
+        columns=cols2,
+        style_cell={'textAlign': 'left'},
+        page_size=20,
+    style_cell_conditional=[
+        {
+            'if': {'column_id': c},
+            'textAlign': 'right'
+        } for c in right_cols
+    ],
+    ),
+
+
+    ])
+
+@app.callback(
+    Output(component_id='buy', component_property='data'),
+    Output(component_id='sell', component_property='data'),
+    Output(component_id='no_change', component_property='data'),
+    Output(component_id='new_buy', component_property='data'),
+    Output(component_id='all_sold', component_property='data'),
+    [Input(component_id='dt', component_property='value'),
+     Input(component_id='fund', component_property='value')]
+)
+def get_holdings(dt, fund):
+    buy, sell, no_change, new_buy, all_sold = c.compare_position(dt, fund)
+
+    return buy.to_dict('records'), sell.to_dict('records'), no_change.to_dict('records'), new_buy.to_dict('records'), all_sold.to_dict('records')

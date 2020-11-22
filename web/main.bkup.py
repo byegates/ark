@@ -1,28 +1,27 @@
+import dash
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
-import plotly.express as px
-import pandas as pd
-import pathlib
-from app import app
-
 import dash_table as dtbl
+
+dash_app = dash.Dash(__name__)
+dash_app.title = 'Ark Invest'
+app = dash_app.server
+
 import core as c
-from core import dates, funds, dt, fund, cols
 
-df = c.holdings(dt)
-tt_val = f"$ {sum(df.value):,.2f}"
+cur_dt = c.all_dates()[0]
+df = c.holdings(cur_dt)
 
-layout = html.Div(children=[
+dash_app.layout = html.Div(children=[
     html.H1(children='Ark Invest Holdings', style={"textAlign": "center"}),
 
     html.H6(children=f'''
-        Total AUM: {tt_val} (as of {dt} market close) 
+        As of {cur_dt} (market close)
     '''),
 
     dtbl.DataTable(
         id='All Ark Latest Holdings',
-        columns=cols,
+        columns=[{"name": i, "id": i} for i in df.columns],
         data=df.to_dict('records'),
         style_cell={'textAlign': 'left'},
         page_size=20,
@@ -34,3 +33,6 @@ layout = html.Div(children=[
     ],
     )
 ])
+
+if __name__ == '__main__':
+    dash_app.run_server(debug=True)
