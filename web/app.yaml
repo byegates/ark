@@ -8,8 +8,7 @@
 runtime: python
 env: flex
 
-#entrypoint: gunicorn -b :$PORT main:app
-entrypoint: python main.py
+entrypoint: gunicorn -b :$PORT main:server
 
 runtime_config:
   python_version: 3.7
@@ -19,5 +18,5 @@ manual_scaling:
   instances: 1
 resources:
   cpu: .5
-  memory_gb: 0.18
+  memory_gb: 0.5
   disk_size_gb: 10
