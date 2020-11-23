@@ -3,9 +3,9 @@ print(f"{'-'*20} {'app.py':^30} {'-'*20}")
 import dash
 
 # meta_tags are required for the app layout to be mobile responsive
-app = dash.Dash(__name__, suppress_callback_exceptions=True,
+dashapp = dash.Dash(__name__, suppress_callback_exceptions=True,
                 meta_tags=[{'name': 'viewport',
                             'content': 'width=device-width, initial-scale=1.0'}]
                 )
-app.title = 'Ark Invest'
-server = app.server
+dashapp.title = 'Ark Invest'
+app = dashapp.server

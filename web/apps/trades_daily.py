@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
 import pathlib
-from app import app
+from app import dashapp
 
 import dash_table as dtbl
 import core as c
@@ -106,7 +106,7 @@ layout = html.Div(children=[
 
     ])
 
-@app.callback(
+@dashapp.callback(
     Output(component_id='buy', component_property='data'),
     Output(component_id='sell', component_property='data'),
     Output(component_id='no_change', component_property='data'),

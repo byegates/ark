@@ -7,14 +7,14 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 
 # Connect to main app.py file
+from app import dashapp
 from app import app
-from app import server
 
 # Connect to your app pages
 from apps import holdings_overall, holdings_by_fund, trades_daily
 
-print('app.layout = html.Div([')
-app.layout = html.Div([
+print('dashapp.layout = html.Div([')
+dashapp.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div([
         dcc.Link('Holdings|', href='/apps/holdings_overall'),
@@ -25,8 +25,8 @@ app.layout = html.Div([
 ])
 
 
-print('@app.callback, display_page')
-@app.callback(Output('page-content', 'children'),
+print('@dashapp.callback, display_page')
+@dashapp.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
     print(f"{'-'*20} {pathname:^30} {'-'*20}")
@@ -41,5 +41,5 @@ def display_page(pathname):
 
 
 if __name__ == '__main__':
-    print('app.run_server(debug=True)')
-    app.run_server(debug=True)
+    print('dashapp.run_server(debug=True)')
+    dashapp.run_server(debug=True)
