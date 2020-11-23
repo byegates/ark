@@ -1,3 +1,5 @@
+print(f"{'-'*20} {'app.py':^30} {'-'*20}")
+
 import dash
 
 # meta_tags are required for the app layout to be mobile responsive

@@ -1,3 +1,5 @@
+print(f"{'-'*20} {'core.py':^30} {'-'*20}")
+
 import google.auth
 from google.cloud import bigquery, bigquery_storage
 from datetime import datetime
@@ -5,7 +7,6 @@ import pandas as pd
 import pytz
 import dash_table.FormatTemplate as FT
 from dash_table.Format import Sign, Format
-
 
 credentials, project_id = google.auth.default(
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
@@ -27,6 +28,7 @@ def bq_to_df(sql):
 
 
 def all_funds(dt=today, num=23):
+    print(f"In fucntion all_funds")
     sql = f"""
 SELECT
   DISTINCT fund
@@ -42,6 +44,7 @@ ORDER BY
 
 
 def all_dates(dt=today, num=30):
+    print(f"In fucntion all_dates")
     sql = f"""
 SELECT
   DISTINCT Date
@@ -69,6 +72,7 @@ def edits(df):
 
 
 def holdings(dt, fund=None):
+    print(f"In fucntion holdings")
     sql = f"""
 SELECT
   Ticker,

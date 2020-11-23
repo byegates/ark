@@ -1,3 +1,5 @@
+print(f"{'-'*20} {'Trades daily':^30} {'-'*20}")
+
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
@@ -11,7 +13,7 @@ import core as c
 from core import dates, funds, dt, fund, cols2, right_cols
 
 layout = html.Div(children=[
-    html.H1(children='Ark Invest Position Changes', style={"textAlign": "center"}),
+    html.H1(children='Position Changes by Fund', style={"textAlign": "center"}),
 
     html.Div([
         html.Div([
@@ -31,7 +33,7 @@ layout = html.Div(children=[
         )], className='two columns'),
     ], className='row'),
 
-    html.H6(children=f'''Increased positions'''),
+    html.H6(children=f'''Increased position(s)'''),
     dtbl.DataTable(
         id='buy',
         columns=cols2,
@@ -45,7 +47,7 @@ layout = html.Div(children=[
     ],
     ),
 
-    html.H6(children=f'''Decreased positions'''),
+    html.H6(children=f'''Decreased position(s)'''),
     dtbl.DataTable(
         id='sell',
         columns=cols2,
@@ -59,7 +61,7 @@ layout = html.Div(children=[
     ],
     ),
 
-    html.H6(children=f'''New position'''),
+    html.H6(children=f'''New position(s)'''),
     dtbl.DataTable(
         id='new_buy',
         columns=cols2,
@@ -73,7 +75,7 @@ layout = html.Div(children=[
     ],
     ),
 
-    html.H6(children=f'''Closed position'''),
+    html.H6(children=f'''Closed position(s)'''),
     dtbl.DataTable(
         id='all_sold',
         columns=cols2,
@@ -87,7 +89,7 @@ layout = html.Div(children=[
     ],
     ),
 
-    html.H6(children=f'''Position with no change'''),
+    html.H6(children=f'''Position(s) with no change'''),
     dtbl.DataTable(
         id='no_change',
         columns=cols2,
@@ -115,5 +117,4 @@ layout = html.Div(children=[
 )
 def get_holdings(dt, fund):
     buy, sell, no_change, new_buy, all_sold = c.compare_position(dt, fund)
-
     return buy.to_dict('records'), sell.to_dict('records'), no_change.to_dict('records'), new_buy.to_dict('records'), all_sold.to_dict('records')

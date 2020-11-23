@@ -1,3 +1,5 @@
+print(f"{'-'*20} {'holdings overall':^30} {'-'*20}")
+
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
