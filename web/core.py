@@ -127,7 +127,7 @@ def get_diff(df0, df1):
     return buy, sell, no_change, new_buy, all_sold
 
 
-def compare_position(dt, fund):
+def compare_position(dt, fund=None):
     dates = all_dates(dt)
     dt0, dt1 = dates[0], dates[1]
 

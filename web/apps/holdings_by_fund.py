@@ -11,10 +11,10 @@ from app import dashapp
 
 import dash_table as dtbl
 import core as c
-from core import dates, funds, dt, fund, cols
+from core import dates, funds, dt, cols, right_cols
 
 layout = html.Div(children=[
-    html.H1(children='Ark Invest Holdings by Fund', style={"textAlign": "center"}),
+    html.H2(children='Ark Invest Holdings by Fund', style={"textAlign": "center"}),
 
     html.Div([
         html.Div([
@@ -34,10 +34,10 @@ layout = html.Div(children=[
         )], className='two columns'),
     ], className='row'),
 
-    html.Br(),
-    html.H6(id='tt_val'),
+    html.H6(id='title_hf'),
+
     dtbl.DataTable(
-        id='holdings',
+        id='holdings_by_f',
         columns=cols,
         style_cell={'textAlign': 'left'},
         page_size=20,
@@ -45,21 +45,20 @@ layout = html.Div(children=[
         {
             'if': {'column_id': c},
             'textAlign': 'right'
-        } for c in ['shares', 'value', 'weight']
+        } for c in right_cols
     ],
     )
 
     ])
 
 @dashapp.callback(
-    Output(component_id='holdings', component_property='data'),
-    Output(component_id='tt_val', component_property='children'),
+    Output(component_id='holdings_by_f', component_property='data'),
+    Output(component_id='title_hf', component_property='children'),
     [Input(component_id='dt', component_property='value'),
      Input(component_id='fund', component_property='value')]
 )
 def get_holdings(dt, fund):
     df = c.holdings(dt, fund)
-    data=df.to_dict('records')
-    tt_val = f"$ {sum(df.value):,.2f}"
+    title = html.Div([html.H6(children=f"Total AUM: $ {sum(df.value):,.2f}"),])
 
-    return data, tt_val
+    return df.to_dict('records'), title

@@ -19,3 +19,7 @@ __pycache__/
 /setup.cfg
 # virtual env folder 
 .venvs/
+
+app_stand.yaml
+app_flex.yaml
+

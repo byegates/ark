@@ -11,13 +11,14 @@ from app import dashapp
 from app import app
 
 # Connect to your app pages
-from apps import holdings_overall, holdings_by_fund, trades_daily
+from apps import holdings_overall, holdings_by_fund, trades_daily, trades
 
 print('dashapp.layout = html.Div([')
 dashapp.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div([
         dcc.Link('Holdings|', href='/apps/holdings_overall'),
+        dcc.Link('trades|', href='/apps/trades'),
         dcc.Link('Holdings by Fund|', href='/apps/holdings_by_fund'),
         dcc.Link('Position Change by Fund', href='/apps/trades_daily'),
     ], className="row"),
@@ -32,6 +33,8 @@ def display_page(pathname):
     print(f"{'-'*20} {pathname:^30} {'-'*20}")
     if pathname == '/apps/holdings_overall':
         return holdings_overall.layout
+    if pathname == '/apps/trades':
+        return trades.layout
     if pathname == '/apps/holdings_by_fund':
         return holdings_by_fund.layout
     if pathname == '/apps/trades_daily':
