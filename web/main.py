@@ -18,9 +18,9 @@ dashapp.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div([
         dcc.Link('Holdings|', href='/apps/holdings_overall'),
-        dcc.Link('trades|', href='/apps/trades'),
+        dcc.Link('Trades|', href='/apps/trades'),
         dcc.Link('Holdings by Fund|', href='/apps/holdings_by_fund'),
-        dcc.Link('Position Change by Fund', href='/apps/trades_daily'),
+        dcc.Link('Trades by Fund', href='/apps/trades_daily'),
     ], className="row"),
     html.Div(id='page-content', children=[])
 ])
