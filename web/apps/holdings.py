@@ -69,8 +69,7 @@ layout = html.Div(children=[
      ]
 )
 def get_holdings(dt, fund, ticker):
-    use_fd = True if fund == 'All' and ticker != 'All' else False
-
+    use_fd = True if fund == 'All' and ticker != 'All' or fund != 'All' else False
     df = c.holdings(dt=dt, fd=fund, tk=ticker, use_fd=use_fd)
     title = html.Div([html.H6(children=f"Total AUM: $ {sum(df.value):,.2f}"),])
 

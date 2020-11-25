@@ -148,11 +148,11 @@ def get_diff(df0, df1):
     return buy, sell, no_change, new_buy, all_sold
 
 
-def compare_position(dt, fund='All'):
+def compare_position(dt, fund='All', ticker='All', use_fd=False, use_tk=True):
     dates = all_dates(dt)
     dt0, dt1 = dates[0], dates[1]
 
-    df0, df1 = holdings(dt0, fund), holdings(dt1, fund)
+    df0, df1 = holdings(dt0, fund, ticker, use_fd, use_tk), holdings(dt1, fund, ticker, use_fd, use_tk)
 
     buy, sell, no_change, new_buy, all_sold = get_diff(df0, df1)
 
@@ -167,6 +167,7 @@ tickers = all_tickers(dt)
 
 cols = [
         {'name': 'Seq', 'id': 'Seq'},
+        {'name': 'Fund', 'id': 'Fund'},
         {'name': 'Ticker', 'id': 'Ticker'},
         {'name': 'Company Name', 'id': 'Company'},
         {'name': 'Shares', 'id': 'shares', 'type': 'numeric', 'format': Format(group=',')},
@@ -176,6 +177,7 @@ cols = [
 
 cols2 = [
         {'name': 'Seq', 'id': 'Seq'},
+        {'name': 'Fund', 'id': 'Fund'},
         {'name': 'Ticker', 'id': 'Ticker'},
         {'name': 'Company Name', 'id': 'Company'},
         {'name': 'Shares', 'id': 'shares', 'type': 'numeric', 'format': Format(group=',')},
