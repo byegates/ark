@@ -27,20 +27,38 @@ def bq_to_df(sql):
     return client.query(sql).result().to_dataframe(bqstorage_client=bqsclient)
 
 
-def all_funds(dt=today, num=23):
+def all_funds(dt=today):
     print(f"In fucntion all_funds")
     sql = f"""
 SELECT
-  DISTINCT fund
+  DISTINCT Fund
 FROM
   ark.holdings
 ORDER BY
-  fund
+  Fund
     """
 
     df = bq_to_df(sql)
 
-    return df.fund.to_list()
+    return df.Fund.to_list()
+
+
+def all_tickers(dt=today):
+    print(f"In fucntion all_tickers")
+    sql = f"""
+SELECT
+  DISTINCT Ticker
+FROM
+  ark.holdings
+WHERE
+  Ticker >= ''
+ORDER BY
+  Ticker
+    """
+
+    df = bq_to_df(sql)
+
+    return df.Ticker.to_list()
 
 
 def all_dates(dt=today, num=30):
@@ -71,11 +89,12 @@ def edits(df):
     return df
 
 
-def holdings(dt, fund=None):
+def holdings(dt, fd='All', tk='All', use_fd=False, use_tk=True):
     print(f"In fucntion holdings")
     sql = f"""
 SELECT
-  Ticker,
+  {f"Fund, " if use_fd else ''}
+  {f"Ticker, " if use_tk  else ''}
   Company,
   CAST(SUM(Shares) AS INT64) AS shares,
   SUM(Market_Value) AS value
@@ -83,9 +102,11 @@ FROM
   ark.holdings
 WHERE
   Date = '{dt}'
-  {f"AND fund = '{fund}'" if fund else ''}
+  {f"AND fund = '{fd}'" if fd != 'All' else ''}
+  {f"AND Ticker = '{tk}'" if tk != 'All' else ''}
 GROUP BY
-  Ticker,
+  {f"Fund, " if use_fd else ''}
+  {f"Ticker, " if use_tk  else ''}
   Company
 ORDER BY
   SUM(Market_Value) DESC    """
@@ -127,7 +148,7 @@ def get_diff(df0, df1):
     return buy, sell, no_change, new_buy, all_sold
 
 
-def compare_position(dt, fund=None):
+def compare_position(dt, fund='All'):
     dates = all_dates(dt)
     dt0, dt1 = dates[0], dates[1]
 
@@ -139,9 +160,10 @@ def compare_position(dt, fund=None):
 
 
 dates = all_dates()
-funds = all_funds()
 dt = dates[0]
+funds = all_funds(dt)
 fund = funds[0]
+tickers = all_tickers(dt)
 
 cols = [
         {'name': 'Seq', 'id': 'Seq'},

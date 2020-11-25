@@ -1,5 +1,5 @@
 ln = '-'*20
-print(f"{ln} {'holdings_by_fund':^30} {ln}")
+print(f"{ln} {'holdings':^30} {ln}")
 
 import dash_core_components as dcc
 import dash_html_components as html
@@ -11,10 +11,10 @@ from app import dashapp
 
 import dash_table as dtbl
 import core as c
-from core import dates, funds, dt, cols, right_cols
+from core import dates, funds, dt, cols, right_cols, tickers
 
 layout = html.Div(children=[
-    html.H2(children='Ark Invest Holdings by Fund', style={"textAlign": "center"}),
+    html.H3(children='Ark Invest Holdings', style={"textAlign": "center"}),
 
     html.Div([
         html.Div([
@@ -28,16 +28,25 @@ layout = html.Div(children=[
         html.Div([
             html.Pre(children="Fund", style={"fontSize":"150%"}),
             dcc.Dropdown(
-            id='fund', value='ARKK', clearable=False,
+            id='fund', value='All', clearable=False,
             persistence=True, persistence_type='session',
-            options=[{'label': x, 'value': x} for x in funds]
+            options=[{'label': x, 'value': x} for x in funds + ['All']]
         )], className='two columns'),
+
+        html.Div([
+            html.Pre(children="Ticker", style={"fontSize":"150%"}),
+            dcc.Dropdown(
+            id='ticker', value='All', clearable=False,
+            persistence=True, persistence_type='session',
+            options=[{'label': x, 'value': x} for x in tickers + ['All']]
+        )], className='two columns'),
+        
     ], className='row'),
 
-    html.H6(id='title_hf'),
+    html.H6(id='title'),
 
     dtbl.DataTable(
-        id='holdings_by_f',
+        id='holdings',
         columns=cols,
         style_cell={'textAlign': 'left'},
         page_size=20,
@@ -52,13 +61,17 @@ layout = html.Div(children=[
     ])
 
 @dashapp.callback(
-    Output(component_id='holdings_by_f', component_property='data'),
-    Output(component_id='title_hf', component_property='children'),
+    Output(component_id='holdings', component_property='data'),
+    Output(component_id='title', component_property='children'),
     [Input(component_id='dt', component_property='value'),
-     Input(component_id='fund', component_property='value')]
+     Input(component_id='fund', component_property='value'),
+     Input(component_id='ticker', component_property='value')
+     ]
 )
-def get_holdings(dt, fund):
-    df = c.holdings(dt, fund)
+def get_holdings(dt, fund, ticker):
+    use_fd = True if fund == 'All' and ticker != 'All' else False
+
+    df = c.holdings(dt=dt, fd=fund, tk=ticker, use_fd=use_fd)
     title = html.Div([html.H6(children=f"Total AUM: $ {sum(df.value):,.2f}"),])
 
     return df.to_dict('records'), title
