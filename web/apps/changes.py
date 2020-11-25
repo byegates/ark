@@ -13,7 +13,7 @@ import core as c
 from core import dates, funds, dt, cols2, right_cols, tickers
 
 layout = html.Div(children=[
-    html.H2(children='Ark Invest holdings changes', style={"textAlign": "center"}),
+    html.H2(children='Ark Invest Holding Changes', style={"textAlign": "center"}),
 
     html.Div([
         html.Div([
