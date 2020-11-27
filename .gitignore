@@ -134,3 +134,11 @@ notes.txt
 web/.venv/
 web/.venvs/
 dont.mess.with.me
+day_price/20201123/*_2020_hist_price_ytd.csv
+
+min_price/20201123/*_2020_hist_price_ytd.csv
+
+web/min_price/
+
+web/day_price/20201123/*_2020_hist_price_ytd.csv
+
