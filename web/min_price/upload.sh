@@ -1,0 +1,1 @@
+gsutil -m cp *_min.csv gs://nw-msds498-ark-min-price/
