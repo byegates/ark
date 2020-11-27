@@ -1,0 +1,519 @@
+--------------------            core.py             --------------------
+In fucntion all_dates
+--------------------------------------------------
+2020-11-27 01:24:30.005179
+
+SELECT
+  DISTINCT Date
+FROM
+  ark.holdings
+WHERE
+  Date <= '2020-11-27'
+ORDER BY
+  Date DESC
+LIMIT
+  30
+    
+In fucntion all_funds
+--------------------------------------------------
+2020-11-27 01:24:30.844531
+
+SELECT
+  DISTINCT Fund
+FROM
+  ark.holdings
+ORDER BY
+  Fund
+    
+In fucntion all_tickers
+--------------------------------------------------
+2020-11-27 01:24:31.386212
+
+SELECT
+  DISTINCT Ticker
+FROM
+  ark.holdings
+WHERE
+  Ticker >= ''
+ORDER BY
+  Ticker
+    
+3402:
+    start processing...
+None
+3690:
+    start processing...
+None
+4689:
+    start processing...
+None
+6060:
+    start processing...
+None
+8473:
+    start processing...
+None
+9923:
+    start processing...
+None
+AAPL:
+    Skipped
+ACCD:
+    Skipped
+ADBE:
+    Skipped
+ADPT:
+    Skipped
+ADSK:
+    Skipped
+ADYEN:
+    start processing...
+None
+ADYEY:
+    Skipped
+AJRD:
+    Skipped
+AKE:
+    Skipped
+ALGN:
+    Skipped
+ALLT:
+    Skipped
+ALMDG:
+    start processing...
+None
+ALTR:
+    Skipped
+AM3D:
+    start processing...
+None
+AME:
+    Skipped
+AMZN:
+    Skipped
+ANSS:
+    Skipped
+API:
+    Skipped
+AQB:
+    Skipped
+ARCT UQ:
+    start processing...
+None
+ARNC:
+    Skipped
+ATI:
+    Skipped
+AUDC:
+    Skipped
+AVAV:
+    Skipped
+AYLA:
+    Skipped
+BABA:
+    Skipped
+BATM:
+    Skipped
+BDT:
+    Skipped
+BEAM:
+    Skipped
+BEKE:
+    Skipped
+BEZQ:
+    start processing...
+None
+BIDU:
+    Skipped
+BLI:
+    Skipped
+BVXV:
+    Skipped
+BYDDY:
+    Skipped
+CAMT:
+    Skipped
+CAT:
+    Skipped
+CBMG:
+    Skipped
+CDNA:
+    Skipped
+CDXS:
+    Skipped
+CEL:
+    Skipped
+CERS:
+    Skipped
+CGEN:
+    Skipped
+CHKP:
+    Skipped
+CLLS:
+    Skipped
+CRM:
+    Skipped
+CRNT:
+    Skipped
+CRS:
+    Skipped
+CRSP:
+    Skipped
+CRWD:
+    Skipped
+CSTL:
+    Skipped
+CYBR:
+    Skipped
+DANE:
+    start processing...
+None
+DD:
+    Skipped
+DDD:
+    Skipped
+DE:
+    Skipped
+DOCU:
+    Skipped
+DOYU:
+    Skipped
+DSM:
+    Skipped
+DSY:
+    start processing...
+None
+EDIT:
+    Skipped
+EMN:
+    Skipped
+ESLT:
+    Skipped
+EVGN:
+    Skipped
+EVK:
+    Skipped
+EXAS:
+    Skipped
+FARO:
+    Skipped
+FATE:
+    Skipped
+FB:
+    Skipped
+FLIR:
+    Skipped
+FSLY:
+    Skipped
+FTAL:
+    start processing...
+None
+FVRR:
+    Skipped
+GBTC:
+    Skipped
+GE:
+    Skipped
+GH:
+    Skipped
+GILT:
+    Skipped
+GMDA:
+    Skipped
+GOOG:
+    Skipped
+GWRE:
+    Skipped
+HDB:
+    Skipped
+HEN3:
+    start processing...
+None
+HEXAB:
+    start processing...
+None
+HLAN:
+    Skipped
+HON:
+    Skipped
+HPQ:
+    Skipped
+HUBS:
+    Skipped
+HUYA:
+    Skipped
+HXL:
+    Skipped
+IBKR:
+    Skipped
+ICE:
+    Skipped
+ILMN:
+    Skipped
+INCY:
+    Skipped
+INMD:
+    Skipped
+INTU:
+    Skipped
+IONS:
+    Skipped
+IOVA:
+    Skipped
+IPOB:
+    Skipped
+IRDM:
+    Skipped
+ISRG:
+    Skipped
+ITRN:
+    Skipped
+JD:
+    Skipped
+KALU:
+    Skipped
+KMDA:
+    Skipped
+KMTUY:
+    Skipped
+KTOS:
+    Skipped
+LC:
+    Skipped
+LECO:
+    Skipped
+LGVW:
+    Skipped
+LSPD:
+    Skipped
+MCRB:
+    Skipped
+MDT UN:
+    start processing...
+None
+MELI:
+    Skipped
+MKTX:
+    Skipped
+ML:
+    start processing...
+None
+MMM:
+    Skipped
+MOG/A:
+    start processing...
+None
+MSFT:
+    Skipped
+MTLS:
+    Skipped
+MTRX:
+    Skipped
+NET:
+    Skipped
+NFLX:
+    Skipped
+NICE:
+    Skipped
+NIU:
+    Skipped
+NNDM:
+    Skipped
+NSTG:
+    Skipped
+NTDOY:
+    Skipped
+NTLA:
+    Skipped
+NUVA:
+    Skipped
+NVDA:
+    Skipped
+NVMI:
+    Skipped
+NVS:
+    Skipped
+NVTA:
+    Skipped
+NXPI:
+    Skipped
+OERL:
+    start processing...
+None
+OKTA:
+    Skipped
+ONE:
+    Skipped
+ONVO:
+    Skipped
+PACB:
+    Skipped
+PD:
+    Skipped
+PDD:
+    Skipped
+PERI:
+    Skipped
+PHR:
+    Skipped
+PINS:
+    Skipped
+PLTR:
+    Skipped
+PRLB:
+    Skipped
+PSNL:
+    Skipped
+PSTG:
+    Skipped
+PSTI:
+    Skipped
+PTC:
+    Skipped
+PTNR:
+    Skipped
+PYPD:
+    Skipped
+PYPL:
+    Skipped
+RADA:
+    Skipped
+RAVN:
+    Skipped
+RDHL:
+    Skipped
+RDWR:
+    Skipped
+REGN:
+    Skipped
+ROK:
+    Skipped
+ROKU:
+    Skipped
+RPTX:
+    Skipped
+RSW:
+    Skipped
+SAND:
+    Skipped
+SCHW:
+    Skipped
+SDGR:
+    Skipped
+SE:
+    Skipped
+SGL:
+    Skipped
+SHOP:
+    Skipped
+SI:
+    Skipped
+SIE:
+    Skipped
+SILC:
+    Skipped
+SNAP:
+    Skipped
+SNPS:
+    Skipped
+SPCE:
+    Skipped
+SPLK:
+    Skipped
+SPNS:
+    Skipped
+SPOT:
+    Skipped
+SQ:
+    Skipped
+SSYS:
+    Skipped
+STMN:
+    start processing...
+None
+SURF:
+    Skipped
+SYK:
+    Skipped
+SYRS:
+    Skipped
+TAK UN:
+    start processing...
+None
+TARO:
+    Skipped
+TCEHY:
+    Skipped
+TDOC:
+    Skipped
+TEAM:
+    Skipped
+TER:
+    Skipped
+TEVA:
+    Skipped
+TMO:
+    Skipped
+TREE UW:
+    start processing...
+None
+TRMB:
+    Skipped
+TRU:
+    Skipped
+TSEM:
+    Skipped
+TSLA:
+    Skipped
+TSM:
+    Skipped
+TTD:
+    Skipped
+TWLO:
+    Skipped
+TWOU:
+    Skipped
+TWST:
+    Skipped
+TWTR:
+    Skipped
+TXG:
+    Skipped
+U:
+    Skipped
+UCTT:
+    Skipped
+UPS:
+    Skipped
+URGN UQ:
+    start processing...
+None
+VCYT:
+    Skipped
+VOE:
+    Skipped
+VRSK:
+    Skipped
+VRTX:
+    Skipped
+WDAY:
+    Skipped
+WIX:
+    Skipped
+WKHS:
+    Skipped
+WORK:
+    Skipped
+XLNX:
+    Skipped
+XONE:
+    Skipped
+XRX UN:
+    start processing...
+None
+Z:
+    Skipped
+ZM:
+    Skipped
+ZS:
+    Skipped

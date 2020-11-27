@@ -1,0 +1,519 @@
+--------------------            core.py             --------------------
+In fucntion all_dates
+--------------------------------------------------
+2020-11-27 01:20:37.579790
+
+SELECT
+  DISTINCT Date
+FROM
+  ark.holdings
+WHERE
+  Date <= '2020-11-27'
+ORDER BY
+  Date DESC
+LIMIT
+  30
+    
+In fucntion all_funds
+--------------------------------------------------
+2020-11-27 01:20:40.214789
+
+SELECT
+  DISTINCT Fund
+FROM
+  ark.holdings
+ORDER BY
+  Fund
+    
+In fucntion all_tickers
+--------------------------------------------------
+2020-11-27 01:20:41.080288
+
+SELECT
+  DISTINCT Ticker
+FROM
+  ark.holdings
+WHERE
+  Ticker >= ''
+ORDER BY
+  Ticker
+    
+---3402:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---3690:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---4689:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---6060:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---8473:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---9923:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---AAPL:
+    Skipped
+---ACCD:
+    Skipped
+---ADBE:
+    Skipped
+---ADPT:
+    Skipped
+---ADSK:
+    Skipped
+---ADYEN:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---ADYEY:
+    Skipped
+---AJRD:
+    Skipped
+---AKE:
+    Skipped
+---ALGN:
+    Skipped
+---ALLT:
+    Skipped
+---ALMDG:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---ALTR:
+    Skipped
+---AM3D:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---AME:
+    Skipped
+---AMZN:
+    Skipped
+---ANSS:
+    Skipped
+---API:
+    Skipped
+---AQB:
+    Skipped
+---ARCT UQ:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---ARNC:
+    Skipped
+---ATI:
+    Skipped
+---AUDC:
+    Skipped
+---AVAV:
+    Skipped
+---AYLA:
+    Skipped
+---BABA:
+    Skipped
+---BATM:
+    Skipped
+---BDT:
+    Skipped
+---BEAM:
+    Skipped
+---BEKE:
+    Skipped
+---BEZQ:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---BIDU:
+    Skipped
+---BLI:
+    Skipped
+---BVXV:
+    Skipped
+---BYDDY:
+    Skipped
+---CAMT:
+    Skipped
+---CAT:
+    Skipped
+---CBMG:
+    Skipped
+---CDNA:
+    Skipped
+---CDXS:
+    Skipped
+---CEL:
+    Skipped
+---CERS:
+    Skipped
+---CGEN:
+    Skipped
+---CHKP:
+    Skipped
+---CLLS:
+    Skipped
+---CRM:
+    Skipped
+---CRNT:
+    Skipped
+---CRS:
+    Skipped
+---CRSP:
+    Skipped
+---CRWD:
+    Skipped
+---CSTL:
+    Skipped
+---CYBR:
+    Skipped
+---DANE:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---DD:
+    Skipped
+---DDD:
+    Skipped
+---DE:
+    Skipped
+---DOCU:
+    Skipped
+---DOYU:
+    Skipped
+---DSM:
+    Skipped
+---DSY:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---EDIT:
+    Skipped
+---EMN:
+    Skipped
+---ESLT:
+    Skipped
+---EVGN:
+    Skipped
+---EVK:
+    Skipped
+---EXAS:
+    Skipped
+---FARO:
+    Skipped
+---FATE:
+    Skipped
+---FB:
+    Skipped
+---FLIR:
+    Skipped
+---FSLY:
+    Skipped
+---FTAL:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---FVRR:
+    Skipped
+---GBTC:
+    Skipped
+---GE:
+    Skipped
+---GH:
+    Skipped
+---GILT:
+    Skipped
+---GMDA:
+    Skipped
+---GOOG:
+    Skipped
+---GWRE:
+    Skipped
+---HDB:
+    Skipped
+---HEN3:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---HEXAB:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---HLAN:
+    Skipped
+---HON:
+    Skipped
+---HPQ:
+    Skipped
+---HUBS:
+    Skipped
+---HUYA:
+    Skipped
+---HXL:
+    Skipped
+---IBKR:
+    Skipped
+---ICE:
+    Skipped
+---ILMN:
+    Skipped
+---INCY:
+    Skipped
+---INMD:
+    Skipped
+---INTU:
+    Skipped
+---IONS:
+    Skipped
+---IOVA:
+    Skipped
+---IPOB:
+    Skipped
+---IRDM:
+    Skipped
+---ISRG:
+    Skipped
+---ITRN:
+    Skipped
+---JD:
+    Skipped
+---KALU:
+    Skipped
+---KMDA:
+    Skipped
+---KMTUY:
+    Skipped
+---KTOS:
+    Skipped
+---LC:
+    Skipped
+---LECO:
+    Skipped
+---LGVW:
+    Skipped
+---LSPD:
+    Skipped
+---MCRB:
+    Skipped
+---MDT UN:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---MELI:
+    Skipped
+---MKTX:
+    Skipped
+---ML:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---MMM:
+    Skipped
+---MOG/A:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---MSFT:
+    Skipped
+---MTLS:
+    Skipped
+---MTRX:
+    Skipped
+---NET:
+    Skipped
+---NFLX:
+    Skipped
+---NICE:
+    Skipped
+---NIU:
+    Skipped
+---NNDM:
+    Skipped
+---NSTG:
+    Skipped
+---NTDOY:
+    Skipped
+---NTLA:
+    Skipped
+---NUVA:
+    Skipped
+---NVDA:
+    Skipped
+---NVMI:
+    Skipped
+---NVS:
+    Skipped
+---NVTA:
+    Skipped
+---NXPI:
+    Skipped
+---OERL:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---OKTA:
+    Skipped
+---ONE:
+    Skipped
+---ONVO:
+    Skipped
+---PACB:
+    start processing...
+---PD:
+    start processing...
+---PDD:
+    start processing...
+---PERI:
+    start processing...
+---PHR:
+    start processing...
+---PINS:
+    start processing...
+---PLTR:
+    start processing...
+---PRLB:
+    start processing...
+---PSNL:
+    start processing...
+---PSTG:
+    start processing...
+---PSTI:
+    start processing...
+---PTC:
+    start processing...
+---PTNR:
+    start processing...
+---PYPD:
+    start processing...
+---PYPL:
+    start processing...
+---RADA:
+    start processing...
+---RAVN:
+    start processing...
+---RDHL:
+    start processing...
+---RDWR:
+    start processing...
+---REGN:
+    start processing...
+---ROK:
+    start processing...
+---ROKU:
+    start processing...
+---RPTX:
+    start processing...
+---RSW:
+    start processing...
+---SAND:
+    start processing...
+---SCHW:
+    start processing...
+---SDGR:
+    start processing...
+---SE:
+    start processing...
+---SGL:
+    start processing...
+---SHOP:
+    start processing...
+---SI:
+    start processing...
+---SIE:
+    start processing...
+---SILC:
+    start processing...
+---SNAP:
+    start processing...
+---SNPS:
+    start processing...
+---SPCE:
+    start processing...
+---SPLK:
+    start processing...
+---SPNS:
+    start processing...
+---SPOT:
+    start processing...
+---SQ:
+    start processing...
+---SSYS:
+    start processing...
+---STMN:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---SURF:
+    start processing...
+---SYK:
+    start processing...
+---SYRS:
+    start processing...
+---TAK UN:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---TARO:
+    start processing...
+---TCEHY:
+    start processing...
+---TDOC:
+    start processing...
+---TEAM:
+    start processing...
+---TER:
+    start processing...
+---TEVA:
+    start processing...
+---TMO:
+    start processing...
+---TREE UW:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---TRMB:
+    start processing...
+---TRU:
+    start processing...
+---TSEM:
+    start processing...
+---TSLA:
+    Skipped
+---TSM:
+    start processing...
+---TTD:
+    start processing...
+---TWLO:
+    start processing...
+---TWOU:
+    start processing...
+---TWST:
+    start processing...
+---TWTR:
+    start processing...
+---TXG:
+    start processing...
+---U:
+    start processing...
+---UCTT:
+    start processing...
+---UPS:
+    start processing...
+---URGN UQ:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---VCYT:
+    start processing...
+---VOE:
+    start processing...
+---VRSK:
+    start processing...
+---VRTX:
+    start processing...
+---WDAY:
+    start processing...
+---WIX:
+    start processing...
+---WKHS:
+    start processing...
+---WORK:
+    start processing...
+---XLNX:
+    start processing...
+---XONE:
+    start processing...
+---XRX UN:
+    start processing...
+['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', '__weakref__', 'args', 'with_traceback']
+---Z:
+    start processing...
+---ZM:
+    start processing...
+---ZS:
+    start processing...
