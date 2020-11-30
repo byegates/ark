@@ -1,4 +1,4 @@
 from datetime import datetime
-from cli import ixe
+from cli import iex
 
-ixe.main()
+iex.main()
