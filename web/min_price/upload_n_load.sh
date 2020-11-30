@@ -1,4 +1,4 @@
-f="TSLA_2020-11-25_min.csv"
+f="ark_min_price_20201016_20201127.csv"
 
 gsutil -m cp $f gs://nw-msds498-ark-min-price/
 

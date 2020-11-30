@@ -139,3 +139,4 @@ web/min_price/*.csv
 
 web/day_price/20201123/*_2020_hist_price_ytd.csv
 
+web/min_price/data/

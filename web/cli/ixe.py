@@ -74,6 +74,8 @@ def get_csv_all_tickers(tickers=tickers, opdir=opdir):
 
 def get_csv_all_dates(tickers=tickers, dates=dates, opdir=opdir):
     for dt_s in dates:
+        if dt_s < '2020-11-27':
+            continue
         processed_t = f'{opdir}/{dt_s}_processed.txt'
         error_t = f'{opdir}/{dt_s}_error.txt'
         for ticker in tickers:

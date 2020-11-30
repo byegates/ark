@@ -1,0 +1,32 @@
+BigQuery error in load operation: Error processing job 'nw-msds498-ark-etf-
+analytics:bqjob_r552399cfb44e0875_0000017612a2ef99_1': Error while reading data,
+error message: CSV table references column position 21, but line starting at
+position:162 contains only 13 columns.
+Failure details:
+- Error while reading data, error message: CSV processing encountered
+too many errors, giving up. Rows: 11940; errors: 1; max bad: 0;
+error percent: 0
+- Error while reading data, error message: CSV processing encountered
+too many errors, giving up. Rows: 12150; errors: 1; max bad: 0;
+error percent: 0
+- Error while reading data, error message: CSV processing encountered
+too many errors, giving up. Rows: 12540; errors: 1; max bad: 0;
+error percent: 0
+- Error while reading data, error message: CSV processing encountered
+too many errors, giving up. Rows: 12930; errors: 1; max bad: 0;
+error percent: 0
+- Error while reading data, error message: CSV processing encountered
+too many errors, giving up. Rows: 13320; errors: 1; max bad: 0;
+error percent: 0
+- gs://nw-msds498-ark-min-price/BYDDY_2020-10-19_min.csv: Error while
+reading data, error message: CSV table references column position
+21, but line starting at position:162 contains only 13 columns.
+- gs://nw-msds498-ark-min-price/BYDDY_2020-11-13_min.csv: Error while
+reading data, error message: CSV table references column position
+21, but line starting at position:162 contains only 13 columns.
+- gs://nw-msds498-ark-min-price/BYDDY_2020-10-22_min.csv: Error while
+reading data, error message: CSV table references column position
+21, but line starting at position:162 contains only 13 columns.
+- gs://nw-msds498-ark-min-price/BYDDY_2020-11-04_min.csv: Error while
+reading data, error message: CSV table references column position
+21, but line starting at position:162 contains only 13 columns.
