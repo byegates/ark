@@ -23,3 +23,8 @@ __pycache__/
 app_stand.yaml
 app_flex.yaml
 
+# data pipeline related
+min_price/
+day_price/
+
+

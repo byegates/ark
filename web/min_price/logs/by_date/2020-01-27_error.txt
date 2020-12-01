@@ -1,0 +1,26 @@
+min_price/data/3402_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/3690_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/4689_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/6060_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/8473_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/ADYEN_2020-01-27_min.csv      : skipped for known IEXQueryError
+min_price/data/ALMDG_2020-01-27_min.csv      : skipped for known IEXQueryError
+min_price/data/AM3D_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/ARCT UQ_2020-01-27_min.csv    : skipped for known IEXQueryError
+min_price/data/BATM_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/BEZQ_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/DANE_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/DSY_2020-01-27_min.csv        : skipped for known IEXQueryError
+min_price/data/FTAL_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/HEN3_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/HEXAB_2020-01-27_min.csv      : skipped for known IEXQueryError
+min_price/data/MDT UN_2020-01-27_min.csv     : skipped for known IEXQueryError
+min_price/data/MOG/A_2020-01-27_min.csv      : skipped for known IEXQueryError
+min_price/data/OERL_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/ONVO_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/ONVO _2020-01-27_min.csv      : skipped for known IEXQueryError
+min_price/data/STMN_2020-01-27_min.csv       : skipped for known IEXQueryError
+min_price/data/TAK UN_2020-01-27_min.csv     : skipped for known IEXQueryError
+min_price/data/TREE UW_2020-01-27_min.csv    : skipped for known IEXQueryError
+min_price/data/URGN UQ_2020-01-27_min.csv    : skipped for known IEXQueryError
+min_price/data/XRX UN_2020-01-27_min.csv     : skipped for known IEXQueryError

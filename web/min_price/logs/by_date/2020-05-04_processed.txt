@@ -1,0 +1,406 @@
+min_price/data/9923_2020-05-04_min.csv       : File written
+min_price/data/AAPL_2020-05-04_min.csv       : File written
+min_price/data/ACCD_2020-05-04_min.csv       : File written
+min_price/data/ADBE_2020-05-04_min.csv       : File written
+min_price/data/ADPT_2020-05-04_min.csv       : File written
+min_price/data/ADSK_2020-05-04_min.csv       : File written
+min_price/data/ADYEY_2020-05-04_min.csv      : File written
+min_price/data/AJRD_2020-05-04_min.csv       : File written
+min_price/data/AKE_2020-05-04_min.csv        : File written
+min_price/data/ALGN_2020-05-04_min.csv       : File written
+min_price/data/ALLT_2020-05-04_min.csv       : File written
+min_price/data/ALTR_2020-05-04_min.csv       : File written
+min_price/data/AME_2020-05-04_min.csv        : File written
+min_price/data/AMZN_2020-05-04_min.csv       : File written
+min_price/data/ANSS_2020-05-04_min.csv       : File written
+min_price/data/API_2020-05-04_min.csv        : File written
+min_price/data/AQB_2020-05-04_min.csv        : File written
+min_price/data/ARNC_2020-05-04_min.csv       : File written
+min_price/data/ATI_2020-05-04_min.csv        : File written
+min_price/data/AUDC_2020-05-04_min.csv       : File written
+min_price/data/AVAV_2020-05-04_min.csv       : File written
+min_price/data/AYLA_2020-05-04_min.csv       : File written
+min_price/data/BABA_2020-05-04_min.csv       : File written
+min_price/data/BDT_2020-05-04_min.csv        : File written
+min_price/data/BEAM_2020-05-04_min.csv       : File written
+min_price/data/BEKE_2020-05-04_min.csv       : File written
+min_price/data/BIDU_2020-05-04_min.csv       : File written
+min_price/data/BLI_2020-05-04_min.csv        : File written
+min_price/data/BVXV_2020-05-04_min.csv       : File written
+min_price/data/BYDDY_2020-05-04_min.csv      : File written
+min_price/data/CAMT_2020-05-04_min.csv       : File written
+min_price/data/CAT_2020-05-04_min.csv        : File written
+min_price/data/CBMG_2020-05-04_min.csv       : File written
+min_price/data/CDNA_2020-05-04_min.csv       : File written
+min_price/data/CDXS_2020-05-04_min.csv       : File written
+min_price/data/CEL_2020-05-04_min.csv        : File written
+min_price/data/CERS_2020-05-04_min.csv       : File written
+min_price/data/CGEN_2020-05-04_min.csv       : File written
+min_price/data/CHKP_2020-05-04_min.csv       : File written
+min_price/data/CLLS_2020-05-04_min.csv       : File written
+min_price/data/CRM_2020-05-04_min.csv        : File written
+min_price/data/CRNT_2020-05-04_min.csv       : File written
+min_price/data/CRS_2020-05-04_min.csv        : File written
+min_price/data/CRSP_2020-05-04_min.csv       : File written
+min_price/data/CRWD_2020-05-04_min.csv       : File written
+min_price/data/CSTL_2020-05-04_min.csv       : File written
+min_price/data/CYBR_2020-05-04_min.csv       : File written
+min_price/data/DD_2020-05-04_min.csv         : File written
+min_price/data/DDD_2020-05-04_min.csv        : File written
+min_price/data/DE_2020-05-04_min.csv         : File written
+min_price/data/DOCU_2020-05-04_min.csv       : File written
+min_price/data/DOYU_2020-05-04_min.csv       : File written
+min_price/data/DSM_2020-05-04_min.csv        : File written
+min_price/data/EDIT_2020-05-04_min.csv       : File written
+min_price/data/EMN_2020-05-04_min.csv        : File written
+min_price/data/ESLT_2020-05-04_min.csv       : File written
+min_price/data/EVGN_2020-05-04_min.csv       : File written
+min_price/data/EVK_2020-05-04_min.csv        : File written
+min_price/data/EXAS_2020-05-04_min.csv       : File written
+min_price/data/FARO_2020-05-04_min.csv       : File written
+min_price/data/FATE_2020-05-04_min.csv       : File written
+min_price/data/FB_2020-05-04_min.csv         : File written
+min_price/data/FLIR_2020-05-04_min.csv       : File written
+min_price/data/FSLY_2020-05-04_min.csv       : File written
+min_price/data/FVRR_2020-05-04_min.csv       : File written
+min_price/data/GBTC_2020-05-04_min.csv       : File written
+min_price/data/GE_2020-05-04_min.csv         : File written
+min_price/data/GH_2020-05-04_min.csv         : File written
+min_price/data/GILT_2020-05-04_min.csv       : File written
+min_price/data/GMDA_2020-05-04_min.csv       : File written
+min_price/data/GOOG_2020-05-04_min.csv       : File written
+min_price/data/GWRE_2020-05-04_min.csv       : File written
+min_price/data/HDB_2020-05-04_min.csv        : File written
+min_price/data/HLAN_2020-05-04_min.csv       : File written
+min_price/data/HON_2020-05-04_min.csv        : File written
+min_price/data/HPQ_2020-05-04_min.csv        : File written
+min_price/data/HUBS_2020-05-04_min.csv       : File written
+min_price/data/HUYA_2020-05-04_min.csv       : File written
+min_price/data/HXL_2020-05-04_min.csv        : File written
+min_price/data/IBKR_2020-05-04_min.csv       : File written
+min_price/data/ICE_2020-05-04_min.csv        : File written
+min_price/data/ILMN_2020-05-04_min.csv       : File written
+min_price/data/INCY_2020-05-04_min.csv       : File written
+min_price/data/INMD_2020-05-04_min.csv       : File written
+min_price/data/INTU_2020-05-04_min.csv       : File written
+min_price/data/IONS_2020-05-04_min.csv       : File written
+min_price/data/IOVA_2020-05-04_min.csv       : File written
+min_price/data/IPOB_2020-05-04_min.csv       : File written
+min_price/data/IRDM_2020-05-04_min.csv       : File written
+min_price/data/ISRG_2020-05-04_min.csv       : File written
+min_price/data/ITRN_2020-05-04_min.csv       : File written
+min_price/data/JD_2020-05-04_min.csv         : File written
+min_price/data/KALU_2020-05-04_min.csv       : File written
+min_price/data/KMDA_2020-05-04_min.csv       : File written
+min_price/data/KMTUY_2020-05-04_min.csv      : File written
+min_price/data/KTOS_2020-05-04_min.csv       : File written
+min_price/data/LC_2020-05-04_min.csv         : File written
+min_price/data/LECO_2020-05-04_min.csv       : File written
+min_price/data/LGVW_2020-05-04_min.csv       : File written
+min_price/data/LSPD_2020-05-04_min.csv       : File written
+min_price/data/MCRB_2020-05-04_min.csv       : File written
+min_price/data/MELI_2020-05-04_min.csv       : File written
+min_price/data/MKTX_2020-05-04_min.csv       : File written
+min_price/data/ML_2020-05-04_min.csv         : File written
+min_price/data/MMM_2020-05-04_min.csv        : File written
+min_price/data/MSFT_2020-05-04_min.csv       : File written
+min_price/data/MTLS_2020-05-04_min.csv       : File written
+min_price/data/MTRX_2020-05-04_min.csv       : File written
+min_price/data/NET_2020-05-04_min.csv        : File written
+min_price/data/NFLX_2020-05-04_min.csv       : File written
+min_price/data/NICE_2020-05-04_min.csv       : File written
+min_price/data/NIU_2020-05-04_min.csv        : File written
+min_price/data/NNDM_2020-05-04_min.csv       : File written
+min_price/data/NSTG_2020-05-04_min.csv       : File written
+min_price/data/NTDOY_2020-05-04_min.csv      : File written
+min_price/data/NTLA_2020-05-04_min.csv       : File written
+min_price/data/NUVA_2020-05-04_min.csv       : File written
+min_price/data/NVDA_2020-05-04_min.csv       : File written
+min_price/data/NVMI_2020-05-04_min.csv       : File written
+min_price/data/NVS_2020-05-04_min.csv        : File written
+min_price/data/NVTA_2020-05-04_min.csv       : File written
+min_price/data/NXPI_2020-05-04_min.csv       : File written
+min_price/data/OKTA_2020-05-04_min.csv       : File written
+min_price/data/ONE_2020-05-04_min.csv        : File written
+min_price/data/PACB_2020-05-04_min.csv       : File written
+min_price/data/PD_2020-05-04_min.csv         : File written
+min_price/data/PDD_2020-05-04_min.csv        : File written
+min_price/data/PERI_2020-05-04_min.csv       : File written
+min_price/data/PHR_2020-05-04_min.csv        : File written
+min_price/data/PINS_2020-05-04_min.csv       : File written
+min_price/data/PLTR_2020-05-04_min.csv       : File written
+min_price/data/PRLB_2020-05-04_min.csv       : File written
+min_price/data/PSNL_2020-05-04_min.csv       : File written
+min_price/data/PSTG_2020-05-04_min.csv       : File written
+min_price/data/PSTI_2020-05-04_min.csv       : File written
+min_price/data/PTC_2020-05-04_min.csv        : File written
+min_price/data/PTNR_2020-05-04_min.csv       : File written
+min_price/data/PYPD_2020-05-04_min.csv       : File written
+min_price/data/PYPL_2020-05-04_min.csv       : File written
+min_price/data/RADA_2020-05-04_min.csv       : File written
+min_price/data/RAVN_2020-05-04_min.csv       : File written
+min_price/data/RDHL_2020-05-04_min.csv       : File written
+min_price/data/RDWR_2020-05-04_min.csv       : File written
+min_price/data/REGN_2020-05-04_min.csv       : File written
+min_price/data/ROK_2020-05-04_min.csv        : File written
+min_price/data/ROKU_2020-05-04_min.csv       : File written
+min_price/data/RPTX_2020-05-04_min.csv       : File written
+min_price/data/RSW_2020-05-04_min.csv        : File written
+min_price/data/SAND_2020-05-04_min.csv       : File written
+min_price/data/SCHW_2020-05-04_min.csv       : File written
+min_price/data/SDGR_2020-05-04_min.csv       : File written
+min_price/data/SE_2020-05-04_min.csv         : File written
+min_price/data/SGL_2020-05-04_min.csv        : File written
+min_price/data/SHOP_2020-05-04_min.csv       : File written
+min_price/data/SI_2020-05-04_min.csv         : File written
+min_price/data/SIE_2020-05-04_min.csv        : File written
+min_price/data/SILC_2020-05-04_min.csv       : File written
+min_price/data/SNAP_2020-05-04_min.csv       : File written
+min_price/data/SNPS_2020-05-04_min.csv       : File written
+min_price/data/SPCE_2020-05-04_min.csv       : File written
+min_price/data/SPLK_2020-05-04_min.csv       : File written
+min_price/data/SPNS_2020-05-04_min.csv       : File written
+min_price/data/SPOT_2020-05-04_min.csv       : File written
+min_price/data/SQ_2020-05-04_min.csv         : File written
+min_price/data/SSYS_2020-05-04_min.csv       : File written
+min_price/data/SURF_2020-05-04_min.csv       : File written
+min_price/data/SYK_2020-05-04_min.csv        : File written
+min_price/data/SYRS_2020-05-04_min.csv       : File written
+min_price/data/TARO_2020-05-04_min.csv       : File written
+min_price/data/TCEHY_2020-05-04_min.csv      : File written
+min_price/data/TDOC_2020-05-04_min.csv       : File written
+min_price/data/TEAM_2020-05-04_min.csv       : File written
+min_price/data/TER_2020-05-04_min.csv        : File written
+min_price/data/TEVA_2020-05-04_min.csv       : File written
+min_price/data/TMO_2020-05-04_min.csv        : File written
+min_price/data/TRMB_2020-05-04_min.csv       : File written
+min_price/data/TRU_2020-05-04_min.csv        : File written
+min_price/data/TSEM_2020-05-04_min.csv       : File written
+min_price/data/TSLA_2020-05-04_min.csv       : File written
+min_price/data/TSM_2020-05-04_min.csv        : File written
+min_price/data/TTD_2020-05-04_min.csv        : File written
+min_price/data/TWLO_2020-05-04_min.csv       : File written
+min_price/data/TWOU_2020-05-04_min.csv       : File written
+min_price/data/TWST_2020-05-04_min.csv       : File written
+min_price/data/TWTR_2020-05-04_min.csv       : File written
+min_price/data/TXG_2020-05-04_min.csv        : File written
+min_price/data/U_2020-05-04_min.csv          : File written
+min_price/data/UCTT_2020-05-04_min.csv       : File written
+min_price/data/UPS_2020-05-04_min.csv        : File written
+min_price/data/VCYT_2020-05-04_min.csv       : File written
+min_price/data/VOE_2020-05-04_min.csv        : File written
+min_price/data/VRSK_2020-05-04_min.csv       : File written
+min_price/data/VRTX_2020-05-04_min.csv       : File written
+min_price/data/WDAY_2020-05-04_min.csv       : File written
+min_price/data/WIX_2020-05-04_min.csv        : File written
+min_price/data/WKHS_2020-05-04_min.csv       : File written
+min_price/data/WORK_2020-05-04_min.csv       : File written
+min_price/data/XLNX_2020-05-04_min.csv       : File written
+min_price/data/XONE_2020-05-04_min.csv       : File written
+min_price/data/Z_2020-05-04_min.csv          : File written
+min_price/data/ZM_2020-05-04_min.csv         : File written
+min_price/data/ZS_2020-05-04_min.csv         : File written
+min_price/data/9923_2020-05-04_min.csv       : File exist, skipped
+min_price/data/AAPL_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ACCD_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ADBE_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ADPT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ADSK_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ADYEY_2020-05-04_min.csv      : File exist, skipped
+min_price/data/AJRD_2020-05-04_min.csv       : File exist, skipped
+min_price/data/AKE_2020-05-04_min.csv        : File exist, skipped
+min_price/data/ALGN_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ALLT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ALTR_2020-05-04_min.csv       : File exist, skipped
+min_price/data/AME_2020-05-04_min.csv        : File exist, skipped
+min_price/data/AMZN_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ANSS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/API_2020-05-04_min.csv        : File exist, skipped
+min_price/data/AQB_2020-05-04_min.csv        : File exist, skipped
+min_price/data/ARNC_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ATI_2020-05-04_min.csv        : File exist, skipped
+min_price/data/AUDC_2020-05-04_min.csv       : File exist, skipped
+min_price/data/AVAV_2020-05-04_min.csv       : File exist, skipped
+min_price/data/AYLA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/BABA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/BDT_2020-05-04_min.csv        : File exist, skipped
+min_price/data/BEAM_2020-05-04_min.csv       : File exist, skipped
+min_price/data/BEKE_2020-05-04_min.csv       : File exist, skipped
+min_price/data/BIDU_2020-05-04_min.csv       : File exist, skipped
+min_price/data/BLI_2020-05-04_min.csv        : File exist, skipped
+min_price/data/BVXV_2020-05-04_min.csv       : File exist, skipped
+min_price/data/BYDDY_2020-05-04_min.csv      : File exist, skipped
+min_price/data/CAMT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CAT_2020-05-04_min.csv        : File exist, skipped
+min_price/data/CBMG_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CDNA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CDXS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CEL_2020-05-04_min.csv        : File exist, skipped
+min_price/data/CERS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CGEN_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CHKP_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CLLS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CRM_2020-05-04_min.csv        : File exist, skipped
+min_price/data/CRNT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CRS_2020-05-04_min.csv        : File exist, skipped
+min_price/data/CRSP_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CRWD_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CSTL_2020-05-04_min.csv       : File exist, skipped
+min_price/data/CYBR_2020-05-04_min.csv       : File exist, skipped
+min_price/data/DD_2020-05-04_min.csv         : File exist, skipped
+min_price/data/DDD_2020-05-04_min.csv        : File exist, skipped
+min_price/data/DE_2020-05-04_min.csv         : File exist, skipped
+min_price/data/DOCU_2020-05-04_min.csv       : File exist, skipped
+min_price/data/DOYU_2020-05-04_min.csv       : File exist, skipped
+min_price/data/DSM_2020-05-04_min.csv        : File exist, skipped
+min_price/data/EDIT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/EMN_2020-05-04_min.csv        : File exist, skipped
+min_price/data/ESLT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/EVGN_2020-05-04_min.csv       : File exist, skipped
+min_price/data/EVK_2020-05-04_min.csv        : File exist, skipped
+min_price/data/EXAS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/FARO_2020-05-04_min.csv       : File exist, skipped
+min_price/data/FATE_2020-05-04_min.csv       : File exist, skipped
+min_price/data/FB_2020-05-04_min.csv         : File exist, skipped
+min_price/data/FLIR_2020-05-04_min.csv       : File exist, skipped
+min_price/data/FSLY_2020-05-04_min.csv       : File exist, skipped
+min_price/data/FVRR_2020-05-04_min.csv       : File exist, skipped
+min_price/data/GBTC_2020-05-04_min.csv       : File exist, skipped
+min_price/data/GE_2020-05-04_min.csv         : File exist, skipped
+min_price/data/GH_2020-05-04_min.csv         : File exist, skipped
+min_price/data/GILT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/GMDA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/GOOG_2020-05-04_min.csv       : File exist, skipped
+min_price/data/GOOGL_2020-05-04_min.csv      : File written
+min_price/data/GWRE_2020-05-04_min.csv       : File exist, skipped
+min_price/data/HDB_2020-05-04_min.csv        : File exist, skipped
+min_price/data/HLAN_2020-05-04_min.csv       : File exist, skipped
+min_price/data/HON_2020-05-04_min.csv        : File exist, skipped
+min_price/data/HPQ_2020-05-04_min.csv        : File exist, skipped
+min_price/data/HUBS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/HUYA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/HXL_2020-05-04_min.csv        : File exist, skipped
+min_price/data/IBKR_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ICE_2020-05-04_min.csv        : File exist, skipped
+min_price/data/ILMN_2020-05-04_min.csv       : File exist, skipped
+min_price/data/INCY_2020-05-04_min.csv       : File exist, skipped
+min_price/data/INMD_2020-05-04_min.csv       : File exist, skipped
+min_price/data/INTU_2020-05-04_min.csv       : File exist, skipped
+min_price/data/IONS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/IOVA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/IPOB_2020-05-04_min.csv       : File exist, skipped
+min_price/data/IRDM_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ISRG_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ITRN_2020-05-04_min.csv       : File exist, skipped
+min_price/data/JD_2020-05-04_min.csv         : File exist, skipped
+min_price/data/KALU_2020-05-04_min.csv       : File exist, skipped
+min_price/data/KMDA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/KMTUY_2020-05-04_min.csv      : File exist, skipped
+min_price/data/KTOS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/LC_2020-05-04_min.csv         : File exist, skipped
+min_price/data/LECO_2020-05-04_min.csv       : File exist, skipped
+min_price/data/LGVW_2020-05-04_min.csv       : File exist, skipped
+min_price/data/LSPD_2020-05-04_min.csv       : File exist, skipped
+min_price/data/MCRB_2020-05-04_min.csv       : File exist, skipped
+min_price/data/MELI_2020-05-04_min.csv       : File exist, skipped
+min_price/data/MKTX_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ML_2020-05-04_min.csv         : File exist, skipped
+min_price/data/MMM_2020-05-04_min.csv        : File exist, skipped
+min_price/data/MSFT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/MTLS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/MTRX_2020-05-04_min.csv       : File exist, skipped
+min_price/data/NET_2020-05-04_min.csv        : File exist, skipped
+min_price/data/NFLX_2020-05-04_min.csv       : File exist, skipped
+min_price/data/NICE_2020-05-04_min.csv       : File exist, skipped
+min_price/data/NIU_2020-05-04_min.csv        : File exist, skipped
+min_price/data/NNDM_2020-05-04_min.csv       : File exist, skipped
+min_price/data/NSTG_2020-05-04_min.csv       : File exist, skipped
+min_price/data/NTDOY_2020-05-04_min.csv      : File exist, skipped
+min_price/data/NTLA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/NUVA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/NVDA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/NVMI_2020-05-04_min.csv       : File exist, skipped
+min_price/data/NVS_2020-05-04_min.csv        : File exist, skipped
+min_price/data/NVTA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/NXPI_2020-05-04_min.csv       : File exist, skipped
+min_price/data/OKTA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/ONE_2020-05-04_min.csv        : File exist, skipped
+min_price/data/PACB_2020-05-04_min.csv       : File exist, skipped
+min_price/data/PD_2020-05-04_min.csv         : File exist, skipped
+min_price/data/PDD_2020-05-04_min.csv        : File exist, skipped
+min_price/data/PERI_2020-05-04_min.csv       : File exist, skipped
+min_price/data/PHR_2020-05-04_min.csv        : File exist, skipped
+min_price/data/PINS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/PLTR_2020-05-04_min.csv       : File exist, skipped
+min_price/data/PRLB_2020-05-04_min.csv       : File exist, skipped
+min_price/data/PSNL_2020-05-04_min.csv       : File exist, skipped
+min_price/data/PSTG_2020-05-04_min.csv       : File exist, skipped
+min_price/data/PSTI_2020-05-04_min.csv       : File exist, skipped
+min_price/data/PTC_2020-05-04_min.csv        : File exist, skipped
+min_price/data/PTNR_2020-05-04_min.csv       : File exist, skipped
+min_price/data/PYPD_2020-05-04_min.csv       : File exist, skipped
+min_price/data/PYPL_2020-05-04_min.csv       : File exist, skipped
+min_price/data/RADA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/RAVN_2020-05-04_min.csv       : File exist, skipped
+min_price/data/RDHL_2020-05-04_min.csv       : File exist, skipped
+min_price/data/RDWR_2020-05-04_min.csv       : File exist, skipped
+min_price/data/REGN_2020-05-04_min.csv       : File exist, skipped
+min_price/data/RHHBY_2020-05-04_min.csv      : File written
+min_price/data/ROK_2020-05-04_min.csv        : File exist, skipped
+min_price/data/ROKU_2020-05-04_min.csv       : File exist, skipped
+min_price/data/RPTX_2020-05-04_min.csv       : File exist, skipped
+min_price/data/RSW_2020-05-04_min.csv        : File exist, skipped
+min_price/data/SAND_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SCHW_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SDGR_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SE_2020-05-04_min.csv         : File exist, skipped
+min_price/data/SGL_2020-05-04_min.csv        : File exist, skipped
+min_price/data/SHOP_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SI_2020-05-04_min.csv         : File exist, skipped
+min_price/data/SIE_2020-05-04_min.csv        : File exist, skipped
+min_price/data/SILC_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SNAP_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SNPS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SPCE_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SPLK_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SPNS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SPOT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SQ_2020-05-04_min.csv         : File exist, skipped
+min_price/data/SSYS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SURF_2020-05-04_min.csv       : File exist, skipped
+min_price/data/SYK_2020-05-04_min.csv        : File exist, skipped
+min_price/data/SYRS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TARO_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TCEHY_2020-05-04_min.csv      : File exist, skipped
+min_price/data/TDOC_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TEAM_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TER_2020-05-04_min.csv        : File exist, skipped
+min_price/data/TEVA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TMO_2020-05-04_min.csv        : File exist, skipped
+min_price/data/TRMB_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TRU_2020-05-04_min.csv        : File exist, skipped
+min_price/data/TSEM_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TSLA_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TSM_2020-05-04_min.csv        : File exist, skipped
+min_price/data/TTD_2020-05-04_min.csv        : File exist, skipped
+min_price/data/TWLO_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TWOU_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TWST_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TWTR_2020-05-04_min.csv       : File exist, skipped
+min_price/data/TXG_2020-05-04_min.csv        : File exist, skipped
+min_price/data/U_2020-05-04_min.csv          : File exist, skipped
+min_price/data/UCTT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/UPS_2020-05-04_min.csv        : File exist, skipped
+min_price/data/VCYT_2020-05-04_min.csv       : File exist, skipped
+min_price/data/VOE_2020-05-04_min.csv        : File exist, skipped
+min_price/data/VRSK_2020-05-04_min.csv       : File exist, skipped
+min_price/data/VRTX_2020-05-04_min.csv       : File exist, skipped
+min_price/data/WDAY_2020-05-04_min.csv       : File exist, skipped
+min_price/data/WIX_2020-05-04_min.csv        : File exist, skipped
+min_price/data/WKHS_2020-05-04_min.csv       : File exist, skipped
+min_price/data/WORK_2020-05-04_min.csv       : File exist, skipped
+min_price/data/XLNX_2020-05-04_min.csv       : File exist, skipped
+min_price/data/XONE_2020-05-04_min.csv       : File exist, skipped
+min_price/data/Z_2020-05-04_min.csv          : File exist, skipped
+min_price/data/ZM_2020-05-04_min.csv         : File exist, skipped
+min_price/data/ZS_2020-05-04_min.csv         : File exist, skipped
