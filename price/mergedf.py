@@ -1,10 +1,10 @@
 import pandas as pd
 from glob import glob
 
-Ymm = '2020-10'
-log = f'logs/mergedf_{Ymm}.txt'
-op = f'ark_min_price_{Ymm}.csv'
-files = f"data/*_{Ymm}-*_min.csv"
+Ymm = '20201124_20201125'
+log = f'day_price/mergedf_log_{Ymm}.txt'
+op = f'day_price/ark_day_price_{Ymm}.csv'
+files = f"day_price/*_{Ymm}.csv"
 
 x = [f for f in glob(files)]
 
@@ -14,12 +14,12 @@ for i, f in enumerate(x):
     try:
         if i % 500 == 0:
             s = f"Processing {i:<5} : {f}\n"
-            with open(fi, 'a') as fi:
+            with open(log, 'a') as fi:
                 fi.write(s)
         _df = pd.read_csv(f)
     except pd.errors.EmptyDataError as pdeEDE:
         s = f"Empty data: {f}\n"
-        with open(fi, 'a') as fi:
+        with open(log, 'a') as fi:
             fi.write(s)
     else:
         df = df.append(_df, ignore_index=True)
