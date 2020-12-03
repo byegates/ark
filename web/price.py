@@ -30,7 +30,7 @@ def chart_by_day_url(ticker, dt):
 
 
 def weighted_day_price(o, c, h, l):
-    return(o + c + .5*h + .5 * l) / 3
+    return .3*o + .3*c + .2*h + .2*l
 
 
 def estimate_price_by_day(ticker, dt):
