@@ -10,6 +10,8 @@ import dash_table as dtbl
 import core as c
 from core import dates, funds, dt, cols2, right_cols, tickers
 
+page_size = 10
+
 layout = html.Div(children=[
     html.H2(children='Ark Invest Holding Changes', style={"textAlign": "center"}),
 
@@ -45,7 +47,7 @@ layout = html.Div(children=[
         id='buy',
         columns=cols2,
         style_cell={'textAlign': 'left'},
-        page_size=20,
+        page_size=page_size,
     style_cell_conditional=[
         {
             'if': {'column_id': c},
@@ -54,12 +56,15 @@ layout = html.Div(children=[
     ],
     ),
 
+    html.Plaintext(children=f'''* Shares * Trade Price, sorted in Descending Order'''),
+    html.Plaintext(children=f'''** Using Close Price for now'''),
+
     html.H6(children=f'''Sells'''),
     dtbl.DataTable(
         id='sell',
         columns=cols2,
         style_cell={'textAlign': 'left'},
-        page_size=20,
+        page_size=page_size,
     style_cell_conditional=[
         {
             'if': {'column_id': c},
@@ -73,7 +78,7 @@ layout = html.Div(children=[
         id='new_buy',
         columns=cols2,
         style_cell={'textAlign': 'left'},
-        page_size=20,
+        page_size=page_size,
     style_cell_conditional=[
         {
             'if': {'column_id': c},
@@ -87,7 +92,7 @@ layout = html.Div(children=[
         id='all_sold',
         columns=cols2,
         style_cell={'textAlign': 'left'},
-        page_size=20,
+        page_size=page_size,
     style_cell_conditional=[
         {
             'if': {'column_id': c},
@@ -101,7 +106,7 @@ layout = html.Div(children=[
         id='no_chg',
         columns=cols2,
         style_cell={'textAlign': 'left'},
-        page_size=20,
+        page_size=page_size,
     style_cell_conditional=[
         {
             'if': {'column_id': c},

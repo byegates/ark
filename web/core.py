@@ -142,7 +142,7 @@ cols2 = [
         {'name': 'Trade Size*', 'id': 'value', 'type': 'numeric', 'format': FT.money(2)},
         {'name': 'Trade Price**', 'id': 'trade_price', 'type': 'numeric', 'format': FT.money(2)},
         {'name': 'Close Price', 'id': 'close_price', 'type': 'numeric', 'format': FT.money(2)},
-        {'name': 'Change', 'id': 'change', 'type': 'numeric', 'format': FT.percentage(6)},
+        {'name': 'Change%', 'id': 'change', 'type': 'numeric', 'format': FT.percentage(6)},
         ]
 
 right_cols = ['shares', 'value', 'weight', 'change', 'close_price', 'trade_price']
