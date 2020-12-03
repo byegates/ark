@@ -1,4 +1,4 @@
-bq rm -f -t 'nw-msds498-ark-etf-analytics:ark.min_price'
+# bq rm -f -t 'nw-msds498-ark-etf-analytics:ark.min_price'
 
 
 FILES=*_min.csv
