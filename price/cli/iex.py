@@ -65,7 +65,6 @@ ORDER BY
     """
 
     df = bq_to_df(sql)
-
     lst = df[field].to_list()
 
     return [v.strftime("%Y-%m-%d") for v in lst] if field == 'Date' else lst
