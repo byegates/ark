@@ -1,8 +1,9 @@
 from price import t, weighted_day_price
+from google.cloud import bigquery
 import pandas as pd
-from core import tickers, dates
 from os import path
 from datetime import datetime
+import pytz
 from iexfinance.stocks import get_historical_data, get_historical_intraday
 from iexfinance.utils import exceptions as e
 
@@ -39,6 +40,36 @@ tickers_to_skip = set(
         ]
     )
 
+client = bigquery.Client()
+today = datetime.now().strftime("%Y-%m-%d")
+
+
+def bq_to_df(sql):
+    est_now = datetime.now().astimezone(pytz.timezone("America/New_York"))
+    ts = est_now.strftime("%Y-%m-%d %H:%M:%S.%f")
+    print(f"{'-'*50}\n{ts}\n{sql}")
+    return client.query(sql).to_dataframe()
+
+
+def query(field='Ticker', dt=today, num=30):
+    sql = f"""
+SELECT
+  DISTINCT {field}
+FROM
+  ark.holdings
+  {"WHERE Ticker >= ''" if field == 'Ticker' else ''}
+  {f"WHERE Date <= '{dt}'" if field == 'Date' else ''}
+ORDER BY
+  {field} {'DESC' if field == 'Date' else ''}
+  {f'LIMIT {num}' if field == 'Date' else ''}
+    """
+
+    df = bq_to_df(sql)
+
+    lst = df[field].to_list()
+
+    return [v.strftime("%Y-%m-%d") for v in lst] if field == 'Date' else lst
+
 
 def weighted_price_df(r):
     return weighted_day_price(r.open, r.close, r.high, r.low)
@@ -70,7 +101,6 @@ def to_csv(ticker, op, dt, process_log, err_log, mode='min'):
         df=df.reset_index().rename(columns={"index": 'Date'}).set_index(['Ticker', 'Date'])
     elif mode == 'min':
         df=df.set_index(['Ticker'])
-    # df['weighted_avg'] = df.apply(weighted_price_df, 1).round(2)
 
     df.to_csv(op)
     with open (process_log, 'a') as f:
@@ -94,6 +124,10 @@ def to_csv_dedup(ticker, dt_s, datadir, process_log, err_log):
 def get_csv_all_tickers(tickers=tickers, datadir=datadir):
     for ticker in tickers:
         to_csv_dedup(ticker, datadir)
+
+
+dates = query('Date')
+tickers = query('Ticker')
 
 
 def get_csv_all_dates(dates=dates, tickers=tickers, datadir=datadir):

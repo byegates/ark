@@ -1,6 +1,3 @@
-ln = '-'*20
-print(f"{ln} {'holdings':^30} {ln}")
-
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output

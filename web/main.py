@@ -1,7 +1,3 @@
-print('')
-print(f"{'-'*20} {'main.py':^30} {'-'*20}")
-print('')
-
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
@@ -13,7 +9,6 @@ from app import app
 # Connect to your app pages
 from apps import holdings, changes
 
-print('dashapp.layout = html.Div([')
 dashapp.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div([
@@ -24,7 +19,6 @@ dashapp.layout = html.Div([
 ])
 
 
-print('@dashapp.callback, display_page')
 @dashapp.callback(Output('page-content', 'children'),
               [Input('url', 'pathname')])
 def display_page(pathname):
@@ -38,5 +32,4 @@ def display_page(pathname):
 
 
 if __name__ == '__main__':
-    print('dashapp.run_server(debug=True)')
     dashapp.run_server(debug=True)

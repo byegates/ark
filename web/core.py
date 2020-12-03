@@ -1,86 +1,40 @@
-print(f"{'-'*20} {'core.py':^30} {'-'*20}")
-
 import google.auth
-from google.cloud import bigquery, bigquery_storage
+from google.cloud import bigquery
 from datetime import datetime
 import pandas as pd
 import pytz
 import dash_table.FormatTemplate as FT
 from dash_table.Format import Sign, Format
 
-credentials, project_id = google.auth.default(
-    scopes=["https://www.googleapis.com/auth/cloud-platform"]
-)
-
-client = bigquery.Client(credentials=credentials, project=project_id,)
-bqsclient = bigquery_storage.BigQueryReadClient(credentials=credentials)
-
+client = bigquery.Client()
 today = datetime.now().strftime("%Y-%m-%d")
 
+
 def bq_to_df(sql):
-    now = datetime.now()
-    est_now = now.astimezone(pytz.timezone("America/New_York"))
+    est_now = datetime.now().astimezone(pytz.timezone("America/New_York"))
     ts = est_now.strftime("%Y-%m-%d %H:%M:%S.%f")
-    print('-'*50)
-    print(ts)
-    print(sql)
-    return client.query(sql).result().to_dataframe(bqstorage_client=bqsclient)
+    print(f"{'-'*50}\n{ts}\n{sql}")
+    return client.query(sql).to_dataframe()
 
 
-def all_funds(dt=today):
-    print(f"In fucntion all_funds")
+def query(field='Ticker', dt=today, num=99):
     sql = f"""
 SELECT
-  DISTINCT Fund
+  DISTINCT {field}
 FROM
   ark.holdings
+  {"WHERE Ticker >= ''" if field == 'Ticker' else ''}
+  {f"WHERE Date <= '{dt}'" if field == 'Date' else ''}
 ORDER BY
-  Fund
+  {field} {'DESC' if field == 'Date' else ''}
+  {f'LIMIT {num}' if field == 'Date' else ''}
     """
 
     df = bq_to_df(sql)
 
-    return df.Fund.to_list()
+    lst = df[field].to_list()
 
-
-def all_tickers(dt=today):
-    print(f"In fucntion all_tickers")
-    sql = f"""
-SELECT
-  DISTINCT Ticker
-FROM
-  ark.holdings
-WHERE
-  Ticker >= ''
-ORDER BY
-  Ticker
-    """
-
-    df = bq_to_df(sql)
-
-    return df.Ticker.to_list()
-
-
-def all_dates(dt=today, num=30):
-    print(f"In fucntion all_dates")
-    sql = f"""
-SELECT
-  DISTINCT Date
-FROM
-  ark.holdings
-WHERE
-  Date <= '{dt}'
-ORDER BY
-  Date DESC
-LIMIT
-  {num}
-    """
-
-    df = bq_to_df(sql)
-
-    dates = [ v.strftime("%Y-%m-%d") for v in df.Date.to_list()]
-
-    return dates
+    return [v.strftime("%Y-%m-%d") for v in lst] if field == 'Date' else lst
 
 
 def edits(df):
@@ -90,7 +44,6 @@ def edits(df):
 
 
 def holdings(dt, fd='All', tk='All', use_fd=False, use_tk=True):
-    print(f"In fucntion holdings")
     sql = f"""
 SELECT
   {f"Fund, " if use_fd else ''}
@@ -149,7 +102,7 @@ def get_diff(df0, df1):
 
 
 def compare_position(dt, fund='All', ticker='All', use_fd=False, use_tk=True):
-    dates = all_dates(dt)
+    dates = query(field='Date', dt=dt, num=2)
     dt0, dt1 = dates[0], dates[1]
 
     df0, df1 = holdings(dt0, fund, ticker, use_fd, use_tk), holdings(dt1, fund, ticker, use_fd, use_tk)
@@ -159,11 +112,11 @@ def compare_position(dt, fund='All', ticker='All', use_fd=False, use_tk=True):
     return buy, sell, no_change, new_buy, all_sold
 
 
-dates = all_dates()
+dates = query('Date')
+tickers = query('Ticker')
+funds = query('Fund')
 dt = dates[0]
-funds = all_funds(dt)
 fund = funds[0]
-tickers = all_tickers(dt)
 
 cols = [
         {'name': 'Seq', 'id': 'Seq'},

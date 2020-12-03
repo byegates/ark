@@ -51,8 +51,10 @@ One-off function to merge mulitple csv file in the same format into one. With si
 * `upload.sh` - simple cloud storage upload scripts
 
 ### pull
-* This folder contains all components of a full-fledged working cloud functions
-* It pulls holdings data from Ark Invest website (csv format) and upload the csv files onto cloud storage. (Which would then trigger `csv_loader` function automatically)
+This folder contains all components of a full-fledged working cloud functions.
+
+It pulls holdings data from Ark Invest website (csv format) and upload the csv files onto cloud storage. (Which would then trigger `csv_loader` function automatically)
+
 * `env.yaml` - environmental variables for cloud function
 * `main.py` code of the cloud function
 * `requirements.txt` - list of python libraries needed
@@ -88,7 +90,7 @@ Web interface built with `Dash framework` on `Google App Engine`.
 
 
 ### zWIP (Working in progress or not longer valid)
-* This fodler contains some deprecated functions, temporary fixes and functions that are not yet running in production
+This fodler contains some deprecated functions, temporary fixes and functions that are not yet running in production
 
 #### data (pls ignore for now)
 * Some temporary scripts and data mostly for data fixes
