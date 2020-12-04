@@ -1,4 +1,3 @@
-from price import t, weighted_day_price
 from google.cloud import bigquery
 import pandas as pd
 from os import path
@@ -44,6 +43,24 @@ client = bigquery.Client()
 today = datetime.now().strftime("%Y-%m-%d")
 
 
+def dt10to8(s):
+    return ''.join(s.split('-'))
+
+
+def dt8to10(s):
+    return f"{s[:4]}-{s[4:6]}-{s[6:]}"
+
+
+def get_token(fi='dont.mess.with.me'):
+    with open(fi, 'r') as f:
+        return f.readline().strip()
+
+t = get_token()
+
+def dt_f(dt_s, fmt='%Y-%m-%d'):
+    return datetime.strptime(dt_s, fmt)
+
+
 def bq_to_df(sql):
     est_now = datetime.now().astimezone(pytz.timezone("America/New_York"))
     ts = est_now.strftime("%Y-%m-%d %H:%M:%S.%f")
@@ -61,17 +78,11 @@ FROM
   {f"WHERE Date <= '{dt}'" if field == 'Date' else ''}
 ORDER BY
   {field} {'DESC' if field == 'Date' else ''}
-  {f'LIMIT {num}' if field == 'Date' else ''}
-    """
+  {f'LIMIT {num}' if field == 'Date' else ''} """
 
-    df = bq_to_df(sql)
-    lst = df[field].to_list()
+    lst = bq_to_df(sql)[field].to_list()
 
     return [v.strftime("%Y-%m-%d") for v in lst] if field == 'Date' else lst
-
-
-def weighted_price_df(r):
-    return weighted_day_price(r.open, r.close, r.high, r.low)
 
 
 def to_csv(ticker, op, dt, process_log, err_log, mode='min'):
@@ -113,7 +124,7 @@ def to_csv_dedup(ticker, dt_s, datadir, process_log, err_log):
             f.write(f"{op:<45}: skipped for known IEXQueryError\n")
         return
     if not path.exists(op):
-        dt = datetime.strptime(dt_s, '%Y-%m-%d')
+        dt = dt_f(dt_s)
         to_csv(ticker, op, dt, process_log, err_log)
     else:
         with open (process_log, 'a') as f:
@@ -131,15 +142,12 @@ tickers = query('Ticker')
 
 def get_csv_all_dates(dates=dates, tickers=tickers, datadir=datadir):
     for dt_s in dates:
-        process_log = f'{logdir}/{dt_s}_processed.txt'
         err_log = f'{logdir}/{dt_s}_error.txt'
         for ticker in tickers:
             to_csv_dedup(ticker, dt_s, datadir, process_log, err_log)
 
 
 def main():
-    from min_price import get_trade_days
-    dts = get_trade_days.main()[174:]
     get_csv_all_dates(dates=dts)
 
 
