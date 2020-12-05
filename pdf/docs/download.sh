@@ -1,1 +1,1 @@
-gsutil cp gs://nw-msds498-ark-etf-analytics/pdf/* .
+gsutil cp gs://nw-msds498-ark-holdings-raw/pdf/ARK_Trades_asof_*.pdf .
