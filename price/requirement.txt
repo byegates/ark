@@ -17,6 +17,7 @@ pandas==1.1.4
 pandas-market-calendars==1.6.1
 proto-plus==1.11.0
 protobuf==3.14.0
+pyarrow==2.0.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20

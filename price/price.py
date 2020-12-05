@@ -1,52 +1,40 @@
 from datetime import datetime
 from cli.token import t as token_p
-import yaml, json
+import json
 import requests
 import pytz
-
-
-with open('api.yaml') as f:
-    api = yaml.load(f, Loader=yaml.FullLoader)
-
-stand_ty = { # standard request types
-    'quote', # 1
-    'ohlc', # 1
-    'intraday-prices', # 50 msgs
-    'price-target', # require accesses?
-}
-
-
-u, t = api['iex']['u'], api['iex']['t']
-
-day_price_cols = ['symbol', 'date', 'open', 'high', 'low', 'close', 'volume']
-
-
-cur_dt = datetime.today().strftime('%Y-%m-%d')
+import pandas as pd
+from cli.config import u, t, symbols_to_skip, symbols, dates, day_price_cols, errors, client, est_now
 
 
 def get_url(tk='TSLA', dt='20201202', ty='day', env='test'):
     if ty == 'day':
         return f"{u[env]}{tk}/chart/date/{dt}?chartByDay=true&token={t[env]}"
-    elif ty in stand_ty: # quote: 1 msg ohlc: 1
+    elif ty in stand_ty:
         return f"{u[env]}{tk}/{ty}/?token={t[env]}"
 
 
 def get(tk='TSLA', dt='20201202', ty='day', env='test'):
     url = get_url(tk, dt, ty, env)
     res = requests.get(url)
-    if res == b'Unknown symbol': 
-        # Wrong date: b'You have supplied invalid values for this request'
-        # U: same
+    if res.content in errors: 
+        print(f"url: {url}")
+        print(f"status_code: {res.status_code}, content: {res.content}")
         return pd.DataFrame()
     else:
         return res2df(res.json(), tk, ty)
 
 
-def ohlc_edits(res):
-    res['open'] = res['open']['price']
-    res['close'] = res['close']['price']
-    res['date'] = datetime.now().astimezone(pytz.timezone("America/New_York")).strftime("%Y-%m-%d")
-    return [res]
+def res_edit(res, ty):
+    if ty == 'ohlc':
+        res['open'] = res['open']['price']
+        res['close'] = res['close']['price']
+        res['date'] = est_now().strftime("%Y-%m-%d")
+        return [res]
+    elif ty == 'quote':
+        return [res]
+    else:
+        return res
 
 
 def min2day(df):
@@ -65,14 +53,13 @@ def min2day(df):
 
 
 def res2df(res, tk='TSLA', ty='day'):
-    df = pd.DataFrame((ohlc_edits(res) if ty == 'ohlc' else res))
+    df = pd.DataFrame((res_edit(res, ty)))
     if ty in {'day', 'ohlc'}:
         df = df[day_price_cols]#.set_index('symbol')
     elif ty == 'intraday-prices':
         df.insert(0, 'symbol', tk)
     
     return df
-        
 
 
 def main():
