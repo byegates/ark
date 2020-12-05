@@ -1,0 +1,1 @@
+gsutil -m cp data/*_$1.csv gs://nw-msds498-ark-$1-price/

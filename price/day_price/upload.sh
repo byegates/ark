@@ -1,1 +1,0 @@
-gsutil -m cp *_2020_hist_price_ytd.csv gs://nw-msds498-ark-day-price/

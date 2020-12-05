@@ -1,10 +1,11 @@
 import pandas as pd
 from glob import glob
 
-Ymm = '20201124_20201125'
-log = f'day_price/mergedf_log_{Ymm}.txt'
-op = f'day_price/ark_day_price_{Ymm}.csv'
-files = f"day_price/*_{Ymm}.csv"
+Ymm = '20201127_20201204'
+mode = 'day'
+files = f"data/*_2020-*_{mode}.csv"
+log = f'log/merge_{mode}_{Ymm}.txt'
+op = f'ark_{mode}_price_{Ymm}.csv'
 
 x = [f for f in glob(files)]
 
@@ -24,8 +25,7 @@ for i, f in enumerate(x):
     else:
         df = df.append(_df, ignore_index=True)
 
-
-df.set_index(['Ticker']).to_csv(op)
+df.set_index(['symbol']).to_csv(op)
 
 # 82744
 # 83423
