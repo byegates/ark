@@ -89,7 +89,7 @@ Web interface built with `Dash framework` on `Google App Engine`.
 * `requirements.txt` - python libraries required to run this web interface, `Google App Engine` use this to config runtime env.
 
 
-### zWIP (Working in progress or not longer valid)
+### zWIP (Working in progress)
 This fodler contains some deprecated functions, temporary fixes and functions that are not yet running in production
 
 #### data (pls ignore for now)
