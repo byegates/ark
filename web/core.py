@@ -1,4 +1,3 @@
-import google.auth
 from google.cloud import bigquery
 from datetime import datetime
 import pandas as pd
