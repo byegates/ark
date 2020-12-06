@@ -7,8 +7,7 @@ import pathlib
 from app import dashapp
 
 import dash_table as dtbl
-import core as c
-from core import dates, funds, dt, cols, right_cols, tickers
+from core import dates, funds, dt0, cols, right_cols, tickers, holdings
 
 layout = html.Div(children=[
     html.H3(children='Ark Invest Holdings', style={"textAlign": "center"}),
@@ -17,7 +16,7 @@ layout = html.Div(children=[
         html.Div([
             html.Pre(children="Trading Day", style={"fontSize":"150%"}),
             dcc.Dropdown(
-            id='dt', value=dt, clearable=False,
+            id='dt0', value=dt0, clearable=False,
             persistence=True, persistence_type='session',
             options=[{'label': x, 'value': x} for x in dates]
         )], className='two columns'),
@@ -60,14 +59,14 @@ layout = html.Div(children=[
 @dashapp.callback(
     Output(component_id='holdings', component_property='data'),
     Output(component_id='title', component_property='children'),
-    [Input(component_id='dt', component_property='value'),
+    [Input(component_id='dt0', component_property='value'),
      Input(component_id='fund', component_property='value'),
      Input(component_id='ticker', component_property='value')
      ]
 )
-def get_holdings(dt, fund, ticker):
+def get_holdings(dt0, fund, ticker):
     use_fd = True if fund == 'All' and ticker != 'All' or fund != 'All' else False
-    df = c.holdings(dt=dt, fd=fund, tk=ticker, use_fd=use_fd)
+    df = holdings(dt0=dt0, fd=fund, tk=ticker, use_fd=use_fd)
     title = html.Div([html.H6(children=f"Total AUM: $ {sum(df.value):,.2f}"),])
 
     return df.to_dict('records'), title

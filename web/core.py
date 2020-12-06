@@ -46,7 +46,7 @@ def edits(df):
     return df
 
 
-def holdings(dt, fd='All', tk='All', use_fd=False, use_tk=True):
+def holdings(dt0, fd='All', tk='All', use_fd=False, use_tk=True):
     sql = f"""
 SELECT
   {f"Fund, " if use_fd else ''}
@@ -57,7 +57,7 @@ SELECT
 FROM
   ark.holdings
 WHERE
-  Date = '{dt}'
+  Date = '{dt0}'
   {f"AND fund = '{fd}'" if fd != 'All' else ''}
   {f"AND Ticker = '{tk}'" if tk != 'All' else ''}
 GROUP BY
@@ -104,10 +104,7 @@ def get_diff(df0, df1):
     return buy, sell, no_change, new_buy, all_sold
 
 
-def compare_position(dt, fund='All', ticker='All', use_fd=False, use_tk=True):
-    dates = query(field='Date', dt=dt, num=2)
-    dt0, dt1 = dates[0], dates[1]
-
+def compare_position(dt0, dt1, fund='All', ticker='All', use_fd=False, use_tk=True):
     df0, df1 = holdings(dt0, fund, ticker, use_fd, use_tk), holdings(dt1, fund, ticker, use_fd, use_tk)
 
     buy, sell, no_change, new_buy, all_sold = get_diff(df0, df1)
@@ -118,7 +115,7 @@ def compare_position(dt, fund='All', ticker='All', use_fd=False, use_tk=True):
 dates = query('Date')
 tickers = query('Ticker')
 funds = query('Fund')
-dt = dates[0]
+dt0 = dates[0]
 fund = funds[0]
 
 cols = [
