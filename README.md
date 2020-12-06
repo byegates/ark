@@ -4,51 +4,68 @@ Ark Invest holdings tracking and analytics app built on GCP (Google Cloud Platfo
 ## Overview
 
 ### `csv_loader`
-* a GCP Cloud function
-    * Trigger: a new (including overrides) csv file uploaded to a specific cloud storage location (`nw-msds498-ark-etf-analytics`)
-    * This function does one task: load the csv file (Ark Invest daily holding, specific format) to BigQuery table: `ark.holdings`
-    * `env.yaml` - environment variables for cloud function
-    * `main.py` - function source code
-    * `requirement.txt` - python libraries required to run this function, for GCP cloud function's reference to run this function
+a GCP Cloud function
+* Trigger: a new (including overrides) csv file uploaded to a specific cloud storage location (`nw-msds498-ark-etf-analytics`)
+* This function does one task: load the csv file (Ark Invest daily holding, specific format) to BigQuery table: `ark.holdings`
+* `env.yaml` - environment variables for cloud function
+* `main.py` - main logic
+* `requirement.txt` - python libraries required to run this function
 
 
 ### pdf
-* One-off function to convert Ark Invest's PDF format daily holding file to csv format, then load it to cloud storage. 
-* csv file uploaded to cloud storage will automatically trigger the `csv_loader` function to load the file to BigQuery
-* `docs` - this folder contains pdf files to be read
-* `csv` - Folder for converted csv files
-    * `2020-11-13/upload.sh` - script to upload converted csvs to cloud storage
-* `main.py` - python script for pdf to csv conversion using `tabula` and `pandas` library
+One-off function to convert Ark Invest's PDF files to csv format, then load it to cloud storage/BigQuery.
+* `docs` - Store pdf files to be converted temporarily
+* `csv` - Store converted csv files temporarily
+    * `upload.sh` - Upload converted csvs to cloud storage
+* `main.py` - convert holdings pdf to csv using `tabula` and `pandas` library
+* `trade_price.py` - Convert ark trade log (with real execution prices) pdf to csv format
+* `merge_price.py` - merged converted csvs, validates duplicates and inconsistencies as well
 
 ### `price.py`
 
 #### `cli`
 * `ixe.py` - core functions to get minute price and day price information using `iexcloud API` via `iexfinance` python library
+* `config.py` - configuration files used by multiple py file. Including reading/preparing API keys, dictionaries of commonly used fields like:
+    * foreign symbols that can't be handled now
+    * standard API errors
+    * standard API request types
+    * query all available trading days and symbols etc.
+* `get_trade_days.py` use `pandas_market_calendars` library to get trading days between date range
+* `token.py` - Retrieve iex API token, will deprecate soon
+
+#### `data` and `log`
+temporary folders for data and logging
+
+#### `cre_req.sh`
+Shell script to create python requirements file and remove `pkg-resources==0.0.0`, this is specific for develop in google cloud shell 
 
 #### `get_price.py`
-* Right now just a shell function to call `cli/iex.py', need it outside to make import of other lib easier
+A wrapper function to call `cli/iex.py`
+
+#### `load.sh` 
+Upload files that with specific name pattern to cloud storage then load them from cloud storage to BigQuery
+* Delete table from BigQuery first if needed
 
 #### `mergedf.py`
-One-off function to merge mulitple csv file in the same format into one. With simple statistic and error logging
+One-off function to merge mulitple csv file in the same format into one.
 
-#### `day_price`
-* temporarily store intermediate files for processing and uploading history day price files 
-* some logs
-* `load.sh` upload files that with name in specific pattern to cloud storage then load them from cloud storage to BigQuery
-    * Can delete and re-create table from BigQuery as needed
-* `mkdef` - create a table schema for reference from csv file
-* `rename.sh` one off shell script to rename some files produced before
-* `upload.sh` bulk upload files to cloud storage
+#### `price.py`
+WIP python library to get data from iex API (potentially other APIs as well in the future), to solve the efficiency issue with `iexfinance` library
 
-#### `min_price`
-* `data`, `logs` folder, self-explainatory
-* `get_trade_days.py` use `pandas_market_calendars` library to get trade days between date range
-* `load.sh`
-    * remove BigQuery table to be loaded (Optional)
-* `upload_n_load.sh`
-    * local --> cloud storage --> BigQuery
-    * takes in month arguments
-* `upload.sh` - simple cloud storage upload scripts
+#### `rename.sh`
+one off shell script to rename some files produced before
+
+#### `requirement.txt` 
+python libraries required to run everything under price folder
+
+#### `upload.sh`
+bulk upload files to cloud storage
+
+#### `upload_n_load.sh`
+local --> cloud storage --> BigQuery
+* takes in two arguments
+    * price type, min or day
+    * file name to be loaded (on cloud storage)
 
 ### pull
 This folder contains all components of a full-fledged working cloud functions.
@@ -79,29 +96,27 @@ Web interface built with `Dash framework` on `Google App Engine`.
     * core backend logic to support data presented on web interface
     * filling up data in dropdown of all pages
     * Once selection is made (including the default selection while opening the first page), retrieve data from BigQuery tables and return data to frontend
-* `price.py` - WIP, retrieve and calculate price to support holding change page trading sizes information
 * `app.yaml` - App Engine config file
     * `app_flex.yaml` - To deploy this app into flexible Google App Engine, override `app.yaml` using this file
     * `app_stand.yaml` - To deploy thsi app into standard Google App Engine, override `app.yaml` using this file.
         * By default `app.yaml` uses this standard config
 * `assets` - folder for css file and Ark Invest logo
-* `bkup.py` - old single page app's `main.py`, deprecated
-* `requirements.txt` - python libraries required to run this web interface, `Google App Engine` use this to config runtime env.
+* `requirements.txt` - python libraries required to run this web interface
 
 
 ### zWIP (Working in progress)
 This fodler contains some deprecated functions, temporary fixes and functions that are not yet running in production
 
 #### data (pls ignore for now)
-* Some temporary scripts and data mostly for data fixes
+Some temporary scripts and data mostly for data fixes
 * `fixes` - This folder contains data that's been fixed manually and some scripts related to it
 * `tmp` - trades table related describe, schema etc. info
 
 #### dedup
-* A full-fledged cloud function that remove duplicates records from ark.holdings table
+A full-fledged cloud function that remove duplicates records from ark.holdings table
 * Still running on cloud function
-* But no longer really needed as the problem that would cause duplicate records has been fixed
+* No longer really needed as the problem that would cause duplicate records has been fixed
 
 #### gmail and oauth (Not working yet)
-* for gmail authentication to retrieve daily trade notification emails from ARK, not working yet.
+for gmail authentication to retrieve daily trade notification emails from ARK, not working yet.
 
