@@ -35,13 +35,30 @@ ORDER BY
     return [v.strftime("%Y-%m-%d") for v in lst] if field == 'Date' else lst
 
 
-def estimate_trade_price(r):
-    return r['close_price']
+def price_sql(tk, dt, action):
+    return f"""
+SELECT
+  date,
+  action,
+  symbol,
+  AVG(price) AS price
+FROM
+  ark.trade_price
+WHERE
+  date = '{dt}'
+  AND symbol = '{tk}'
+  AND action = '{action}'
+GROUP BY
+  date,
+  action,
+  symbol
+    """
+
 
 def edits(df):
     df['weight'] = (df.value/sum(df.value))
     df['close_price'] = (df.value/df.shares)
-    df['trade_price'] = df.apply(estimate_trade_price, axis=1)
+    df['trade_price'] = df['close_price']
     df.insert(0, 'Seq', df.index+1) # Add number sequence of holdings
     return df
 
@@ -76,6 +93,8 @@ def set_seq(df):
 
 
 def get_diff(df0, df1):
+    # Add trade price logic here later to get real trade price to get real trade size
+    # df0['trade_price'] = df0.apply(estimate_trade_price, axis=1)
     set0 = set(df0.Ticker.to_list())
     set1 = set(df1.Ticker.to_list())
 
@@ -136,7 +155,8 @@ cols2 = [
         {'name': 'Company Name', 'id': 'Company'},
         {'name': 'Shares', 'id': 'shares', 'type': 'numeric', 'format': Format(group=',')},
         {'name': 'Trade Size*', 'id': 'value', 'type': 'numeric', 'format': FT.money(2)},
-        {'name': 'Trade Price**', 'id': 'trade_price', 'type': 'numeric', 'format': FT.money(2)},
+        # {'name': 'Trade Price**', 'id': 'trade_price', 'type': 'numeric', 'format': FT.money(2)},
+        # {'name': 'Source**', 'id': 'price_source', 'type': 'numeric', 'format': FT.money(2)},
         {'name': 'Close Price', 'id': 'close_price', 'type': 'numeric', 'format': FT.money(2)},
         {'name': 'Change%', 'id': 'change', 'type': 'numeric', 'format': FT.percentage(6)},
         ]

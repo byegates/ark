@@ -63,8 +63,8 @@ layout = html.Div(children=[
     ],
     ),
 
-    html.Plaintext(children=f'''* Shares * Trade Price, sorted in Descending Order'''),
-    html.Plaintext(children=f'''** Using Close Price for now'''),
+    html.Plaintext(children=f'''* Shares x Trading Day Close Price as an estimate for now, this will only make sense when comapre with prior trading date'''),
+    # html.Plaintext(children=f'''** Trade price source, using Close Price for now'''),
 
     html.H6(children=f'''Sells'''),
     dtbl.DataTable(
