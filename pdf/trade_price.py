@@ -1,82 +1,75 @@
 import tabula
 import pandas as pd
+import numpy as np
 
 ip_dir = 'docs/'
 op_dir = 'csv/'
 
 files = {
-    "ARK_INNOVATION_ETF_ARKK_HOLDINGS 111320.pdf":
-        {"Date": '2020-11-13', "Fund": "ARKK"},
-    "ARK_INNOVATION_ETF_ARKK_HOLDINGS 111220.pdf":
-        {"Date": '2020-11-12', "Fund": "ARKK"},
-    "ARK_NEXT_GENERATION_INTERNET_ETF_ARKW_HOLDINGS 111320.pdf":
-        {"Date": '2020-11-13', "Fund": "ARKW"},
-    "ARK_NEXT_GENERATION_INTERNET_ETF_ARKW_HOLDINGS 111220.pdf":
-        {"Date": '2020-11-12', "Fund": "ARKW"},
-    "ARK_FINTECH_INNOVATION_ETF_ARKF_HOLDINGS 111320.pdf":
-        {"Date": '2020-11-13', "Fund": "ARKF"},
-    "ARK_FINTECH_INNOVATION_ETF_ARKF_HOLDINGS 111220.pdf":
-        {"Date": '2020-11-12', "Fund": "ARKF"},
-    "ARK_AUTONOMOUS_TECHNOLOGY_&_ROBOTICS_ETF_ARKQ_HOLDINGS 111320.pdf":
-        {"Date": '2020-11-13', "Fund": "ARKQ"},
-    "ARK_AUTONOMOUS_TECHNOLOGY_&_ROBOTICS_ETF_ARKQ_HOLDINGS 111220.pdf":
-        {"Date": '2020-11-12', "Fund": "ARKQ"},
-    "ARK_GENOMIC_REVOLUTION_MULTISECTOR_ETF_ARKG_HOLDINGS 111320.pdf":
-        {"Date": '2020-11-13', "Fund": "ARKG"},
-    "ARK_GENOMIC_REVOLUTION_MULTISECTOR_ETF_ARKG_HOLDINGS 111220.pdf":
-        {"Date": '2020-11-12', "Fund": "ARKG"},
-    "THE_3D_PRINTING_ETF_PRNT_HOLDINGS 111320.pdf":
-        {"Date": '2020-11-13', "Fund": "PRNT"},
-    "THE_3D_PRINTING_ETF_PRNT_HOLDINGS 111220.pdf":
-        {"Date": '2020-11-12', "Fund": "PRNT"},
-    "ARK_ISRAEL_INNOVATIVE_TECHNOLOGY_ETF_IZRL_HOLDINGS 111320.pdf":
-        {"Date": '2020-11-13', "Fund": "IZRL"},
-    "ARK_ISRAEL_INNOVATIVE_TECHNOLOGY_ETF_IZRL_HOLDINGS 111220.pdf":
-        {"Date": '2020-11-12', "Fund": "IZRL"},
+    "ARK_Trades_asof_20200521.pdf",
+    "ARK_Trades_asof_20201111.pdf",
+
     }
 
-rename1 = {"Ticker": "CUSIP"}
-rename2 = {
-    "Unnamed: 2": "Company", 
-    "Unnamed: 4": "Ticker", 
-    "Unnamed: 7": "Shares", 
-    "Unnamed: 9": "Market_Value", 
-    "Unnamed: 10": "Weight"
-    }
-
-cols_to_keep = [nm for nm in rename1] + [nm for nm in rename2]
-
-cols_sorted = ['Date',
- 'Fund',
- 'Company',
- 'Ticker',
- 'CUSIP',
- 'Shares',
- 'Market_Value',
- 'Weight']
+floats = ['price', 'low', 'high', 'close']
+keys = ['date', 'action', 'symbol']
+cols0 = keys + floats
+cols1 = cols0 + ['last']
+cols = keys + ['price']
 
 
-def pdf_to_csv(f, dt, fund):
-    ip = ip_dir + f
-    op = op_dir + f"{dt}_{fund}.csv"
-
-    df = tabula.read_pdf(ip, pages="all")[0]
-    df = df[cols_to_keep]
-    df = df.rename(columns=rename1)
-    df = df.rename(columns=rename2)
-
-    df['Date'] = dt
-    df['Fund'] = fund
-    df['Shares'] = df['Shares'].str.replace(',', '').astype(float)
-    df['Market_Value'] = df['Market_Value'].str.replace(',', '').astype(float)
-
-    df[cols_sorted].to_csv(op, index=False)
+invalid = {
+    '#N/A N/A',
+    '#########',
+}
 
 
+def fix_symbol(l):
+    start_pos_price = 2 + (len(l) - 8) + 1
+    return l[:2] + [' '.join(l[2:start_pos_price])] + l[start_pos_price:]
+
+
+def to_float(s):
+    return np.nan if s in invalid else s.replace('"', '').replace('$', '').replace(',', '')
+
+
+def editdf0(df):
+    df = df[8:]
+    l = [[to_float(s) for s in df.iloc[i,0].split()] for i in range(len(df.index))]
+    l = [ _ if len(_) == 8 else fix_symbol(_) for _ in l]
+    df = pd.DataFrame(l, columns=cols1)
+    return df[cols0]
+
+
+def editdf(df):
+    df = df[1:]
+    df.columns = cols1
+    return df[cols0]
+
+def editdfn(l):
+    df = pd.DataFrame()
+    for _df in l:
+        _df = editdf(_df)
+        df = df.append(_df, ignore_index=True)
+    _ = df[floats].applymap(lambda s: to_float(s)).astype(float)
+    return pd.concat([df[keys], _], axis=1)
+
+
+def edit_n_merge(l):
+    df = pd.DataFrame()
+    df0 = editdf0(l[0]) # first table is read differently than the rest
+    dfn = editdfn(l[1:]) # rest of the table are read in same format
+    df = df.append(df0, ignore_index=True).append(dfn, ignore_index=True)
+    df['date'] = pd.to_datetime(df.date)
+    return df.set_index(keys)
+
+def read_pdf(f):
+    l = tabula.read_pdf(f, pages='all')
+    return edit_n_merge(l)
 
 def main():
-    for f, v in files.items():
-        pdf_to_csv(f, v['Date'], v['Fund'])
+    for f in files:
+        read_pdf(f"{ip_dir}{f}").to_csv(f"{op_dir}{f.split('.')[0]}.csv")
 
 
 if __name__ == "__main__":
