@@ -5,7 +5,7 @@ Ark Invest holdings tracking and analytics app built on GCP (Google Cloud Platfo
 [Ark Holdings](https://bit.ly/3ly5UpH)
 
 ## Diagram
-![Architecture](img/Ark Analytics.png)
+<img src="img/Ark Analytics.png">
 
 ## Future features
 * Daily trade price prediction based on open/high/low/close price, volume, action (Sell/Buy) and past Ark real execution prices
