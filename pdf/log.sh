@@ -1,0 +1,1 @@
+gcloud functions logs read csv_loader --limit=999 --start-time="2020-12-10 03:$1.0"
