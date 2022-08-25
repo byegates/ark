@@ -1,5 +1,5 @@
 gcloud functions deploy ark-holdings-daily-pull \
---runtime=python38 \
+--runtime=python39 \
 --trigger-http \
 --allow-unauthenticated \
 --entry-point=ark_pull \

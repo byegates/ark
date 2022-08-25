@@ -9,14 +9,16 @@ import time
 import os
 
 # Active ETFs
-arkk_url = 'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv'
-arkq_url = 'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_AUTONOMOUS_TECHNOLOGY_&_ROBOTICS_ETF_ARKQ_HOLDINGS.csv'
-arkw_url = 'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_NEXT_GENERATION_INTERNET_ETF_ARKW_HOLDINGS.csv'
-arkg_url = 'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_GENOMIC_REVOLUTION_MULTISECTOR_ETF_ARKG_HOLDINGS.csv'
-arkf_url = 'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_FINTECH_INNOVATION_ETF_ARKF_HOLDINGS.csv'
+arkk_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv'
+arkq_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_AUTONOMOUS_TECH._&_ROBOTICS_ETF_ARKQ_HOLDINGS.csv'
+arkw_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_NEXT_GENERATION_INTERNET_ETF_ARKW_HOLDINGS.csv'
+arkg_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_GENOMIC_REVOLUTION_ETF_ARKG_HOLDINGS.csv'
+arkf_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_FINTECH_INNOVATION_ETF_ARKF_HOLDINGS.csv'
+arkx_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_SPACE_EXPLORATION_&_INNOVATION_ETF_ARKX_HOLDINGS.csv'
+
 # Index ETFs
-prnt_url = 'https://ark-funds.com/wp-content/fundsiteliterature/csv/THE_3D_PRINTING_ETF_PRNT_HOLDINGS.csv'
-izrl_url = 'https://ark-funds.com/wp-content/fundsiteliterature/csv/ARK_ISRAEL_INNOVATIVE_TECHNOLOGY_ETF_IZRL_HOLDINGS.csv'
+prnt_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/THE_3D_PRINTING_ETF_PRNT_HOLDINGS.csv'
+izrl_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_ISRAEL_INNOVATIVE_TECHNOLOGY_ETF_IZRL_HOLDINGS.csv'
 
 ark_dict = {
     'ARKK': arkk_url,
@@ -24,6 +26,7 @@ ark_dict = {
     'ARKW': arkw_url,
     'ARKG': arkg_url,
     'ARKF': arkf_url,
+    'ARKX': arkx_url,
     'PRNT': prnt_url,
     'IZRL': izrl_url,
     }
@@ -39,7 +42,7 @@ storage_client = storage.Client()
 bucket = storage_client.get_bucket(bucket_name)
 raw_bucket = storage_client.get_bucket(raw_bucket_name)
 
-hdr = {'User-Agent': 'Mozilla/5.0'}
+hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36'}
 
 environ = {
     'COOL_DOWN': '2',
@@ -88,7 +91,7 @@ def df_to_str(df):
 
 def retrieve_data(etf, url):
     print(f"\n{etf}:    {url} (retreiving)")
-    req = Request(url, headers=hdr)
+    req = Request(url, headers = hdr)
     raw_str_data = str(urlopen(req).read(), 'utf-8')
     df = str_to_df(raw_str_data)
     asof_date = get_date_from_df(df)
