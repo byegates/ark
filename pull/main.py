@@ -28,9 +28,12 @@ if 'ARKK' not in os.environ:
     with open('env.yaml') as f:
         environ = yaml.safe_load(f)
         print('Reading from local env.yaml file...')
-        for k, v in environ.items():
-            print(f'\'{k}\': \'{v}\'')
         print()
+else:
+    environ = os.environ
+
+for k, v in environ.items():
+    print(f'\'{k}\': \'{v}\'')
 
 ark_dict = {
     'ARKK': '',
