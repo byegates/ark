@@ -24,17 +24,13 @@ raw_bucket = storage_client.get_bucket(raw_bucket_name)
 
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36'}
 
-environ = {}
-
-try:
+if 'ARKK' not in os.environ:
     with open('env.yaml') as f:
         environ = yaml.safe_load(f)
         print('Reading from local env.yaml file...')
         for k, v in environ.items():
             print(f'\'{k}\': \'{v}\'')
         print()
-except FileNotFoundError as ffe:
-    print('Running on GCP, skip env.yaml file read')
 
 ark_dict = {
     'ARKK': '',
@@ -51,7 +47,7 @@ def get_env(key):
     try:
         val = os.environ[key]
         print(f"\nENV var: '{key:<15}' value: {val}")
-    except KeyError as ke:
+    except KeyError as _:
         val = environ[key]
     return val
 
