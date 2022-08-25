@@ -7,34 +7,14 @@ from io import StringIO
 import pytz
 import time
 import os
+import yaml
 
-# Active ETFs
-arkk_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_INNOVATION_ETF_ARKK_HOLDINGS.csv'
-arkq_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_AUTONOMOUS_TECH._&_ROBOTICS_ETF_ARKQ_HOLDINGS.csv'
-arkw_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_NEXT_GENERATION_INTERNET_ETF_ARKW_HOLDINGS.csv'
-arkg_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_GENOMIC_REVOLUTION_ETF_ARKG_HOLDINGS.csv'
-arkf_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_FINTECH_INNOVATION_ETF_ARKF_HOLDINGS.csv'
-arkx_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_SPACE_EXPLORATION_&_INNOVATION_ETF_ARKX_HOLDINGS.csv'
-
-# Index ETFs
-prnt_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/THE_3D_PRINTING_ETF_PRNT_HOLDINGS.csv'
-izrl_url = 'https://ark-funds.com/wp-content/uploads/funds-etf-csv/ARK_ISRAEL_INNOVATIVE_TECHNOLOGY_ETF_IZRL_HOLDINGS.csv'
-
-ark_dict = {
-    'ARKK': arkk_url,
-    'ARKQ': arkq_url,
-    'ARKW': arkw_url,
-    'ARKG': arkg_url,
-    'ARKF': arkf_url,
-    'ARKX': arkx_url,
-    'PRNT': prnt_url,
-    'IZRL': izrl_url,
-    }
-
+# set processing time stamp in EST
 now = datetime.now()
 est_now = now.astimezone(pytz.timezone("America/New_York"))
 ts = est_now.strftime("%Y%m%d_%H%M%S_%f")
 
+# configurations
 project_id = 'nw-msds498-ark-etf-analytics'
 bucket_name = 'nw-msds498-ark-etf-analytics'
 raw_bucket_name = 'nw-msds498-ark-holdings-raw'
@@ -44,18 +24,34 @@ raw_bucket = storage_client.get_bucket(raw_bucket_name)
 
 hdr = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36'}
 
-environ = {
-    'COOL_DOWN': '2',
-    'FORCE_PULL_RAW': 'NO',
-    'VERSION': 'NA'
-}
+environ = {}
+
+try:
+    with open('env.yaml') as f:
+        environ = yaml.safe_load(f)
+        print('Reading from local env.yaml file...')
+        for k, v in environ.items():
+            print(f'\'{k}\': \'{v}\'')
+        print()
+except FileNotFoundError as ffe:
+    print('Running on GCP, skip env.yaml file read')
+
+ark_dict = {
+    'ARKK': '',
+    'ARKQ': '',
+    'ARKW': '',
+    'ARKG': '',
+    'ARKF': '',
+    'ARKX': '',
+    'PRNT': '',
+    'IZRL': '',
+    }
 
 def get_env(key):
     try:
         val = os.environ[key]
         print(f"\nENV var: '{key:<15}' value: {val}")
     except KeyError as ke:
-        print(f"\nENV var: '{key:<15}' value: {environ[key]:<5} (default)")
         val = environ[key]
     return val
 
@@ -64,6 +60,8 @@ force_pull_raw = True if get_env('FORCE_PULL_RAW') == 'YES' else False
 cool_down = int(get_env('COOL_DOWN'))
 version = get_env('VERSION')
 
+for k, _ in ark_dict.items():
+    ark_dict[k] = get_env(k)
 
 def get_date_from_df(df):
     return datetime.date(df.iloc[0, 0])
